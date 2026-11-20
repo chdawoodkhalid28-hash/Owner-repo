@@ -1,6 +1,6 @@
 import {neon} from "@neondatabase/serverless";
 import Link from "next/link";
-const districts:Record<string,{ur:string,en:string,db:string}>={bahawalpur:{ur:"بہاولپور",en:"Bahawalpur",db:"Bahawalpur"},"bahawalnagar":{ur:"بہاولنگر",en:"Bahawalnagar",db:"Bahawalnagar"},"rahim-yar-khan":{ur:"رحیم یار خان",en:"Rahim Yar Khan",db:"Rahim Yar Khan"},bahawalnagar:{ur:"بہاولنگر",en:"Bahawalnagar",db:"Bahawalnagar"},chishtian:{ur:"چشتیاں",en:"Chishtian",db:"Chishtian"},haroonabad:{ur:"ہارون آباد",en:"Haroonabad",db:"Haroonabad"},"fort-abbas":{ur:"فورٹ عباس",en:"Fort Abbas",db:"Fort Abbas"},minchinabad:{ur:"منچن آباد",en:"Minchinabad",db:"Minchinabad"},rural:{ur:"دیہی علاقے",en:"Rural Areas",db:"Rural"}};
+const districts:Record<string,{ur:string,en:string,db:string}>={bahawalpur:{ur:"بہاولپور",en:"Bahawalpur",db:"Bahawalpur"},bahawalnagar:{ur:"بہاولنگر",en:"Bahawalnagar",db:"Bahawalnagar"},"rahim-yar-khan":{ur:"رحیم یار خان",en:"Rahim Yar Khan",db:"Rahim Yar Khan"}};
 export default async function DistrictPage({params}:{params:Promise<{slug:string}>}){
  const {slug}=await params;const d=districts[slug];if(!d)return <main className="detailShell"><Link href="/">← Home</Link><h1>District not found</h1></main>;
  let rows:any[]=[];
