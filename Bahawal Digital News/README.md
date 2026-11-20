@@ -27,6 +27,40 @@ Premium bilingual digital newsroom for Bahawalnagar district and global readers.
 
 Never commit `.env.local`, database URLs, auth secrets, cron secrets, or admin credentials.
 
+## Official About Us / Introduction
+
+### Bahawal Digital News — Tribute, Introduction and Mission
+
+Bahawal Digital News (BDN) is a digital news organization established to preserve Bahawalpur's historical, cultural, social and journalistic identity, amplify the public voice, and deliver news from across the Bahawalpur Division through modern digital media.
+
+The institution is connected with the region's historic heritage, traditions, culture and spirit of public service. Bahawalpur is more than a city or geographical region; it represents history, learning, hospitality, courage, traditions and cultural distinction.
+
+### Tribute to Nawab Sir Sadiq Muhammad Khan Abbasi V
+
+Bahawal Digital News pays tribute to Nawab Sir Sadiq Muhammad Khan Abbasi V, the last ruler of the former State of Bahawalpur, and honors his historical legacy and services. His era is remembered for the state's identity, institution-building, education, public welfare and development traditions. During the early years of Pakistan, the State of Bahawalpur and the Nawab's contributions also held significance in the country's history.
+
+BDN commits to helping preserve and share Bahawalpur's history, culture, notable personalities, educational traditions and public-service legacy with future generations.
+
+### Coverage — The Entire Bahawalpur Division
+
+BDN is not limited to Bahawalpur city. Its coverage scope includes Bahawalpur, Bahawalnagar and Rahim Yar Khan, with attention to cities, towns, villages and rural communities. Coverage topics include public affairs, administration, politics, education, health, business, agriculture, sports, culture, crime, traffic, civic services, development and other important local matters. We aim to make space for smaller communities and voices that are often overlooked.
+
+### Editorial Commitment
+
+Our principles are responsible, impartial, dignified and public-interest journalism. We distinguish news from opinion, verify information, seek relevant perspectives, prioritize facts over sensationalism, and avoid publishing unverified allegations. Where appropriate, we seek the response of the person or institution concerned.
+
+### Mission
+
+To inform people across Bahawalpur Division, bring public issues to relevant attention, strengthen civic awareness, encourage positive community activity and present the region's historical and cultural identity responsibly. We aim to make accurate, timely and relevant information accessible to every resident.
+
+### Vision
+
+To become a trusted, modern, effective and community-focused digital news platform for Bahawalpur Division—building public trust through journalistic standards, regional identity and digital innovation.
+
+**Bahawal Digital News — Connected to history, the voice of the people, committed to truth.**
+
+*Our identity is Bahawalpur, our purpose is public service, and our principle is truth.*
+
 ## Editorial and operational status
 - Public homepage, district pages, category pages, article detail route and informational pages are implemented.
 - Admin UI and role-aware APIs are implemented; authenticated end-to-end tests still require the owner to sign in through the browser. Never request the owner's password in chat.
