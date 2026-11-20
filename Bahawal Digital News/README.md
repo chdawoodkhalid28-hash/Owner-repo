@@ -50,3 +50,9 @@ Never commit `.env.local`, database URLs, auth secrets, cron secrets, or admin c
 
 ## Editorial policy
 Publish only verified reporting with clear attribution. The empty-newsroom state is intentional until real stories are approved.
+
+### Production access verification
+- Vercel Authentication is limited to Preview deployments; Production aliases are public.
+- Homepage and `/admin` both returned HTTP 200 in the latest verification.
+- The last 7-day Vercel runtime error scan was clean.
+- Authenticated CMS workflows still require owner sign-in and hands-on verification.
