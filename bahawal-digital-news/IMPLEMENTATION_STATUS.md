@@ -51,3 +51,13 @@ Last updated: 2026-11-20
 - Canonical GitHub folder: https://github.com/chdawoodkhalid28-hash/Owner-repo/tree/main/Bahawal%20Digital%20News
 - Deployment source folder: https://github.com/chdawoodkhalid28-hash/Owner-repo/tree/main/bahawal-digital-news
 - Vercel: https://vercel.com/chdawoodkhalid28-5713/bahawal-digital-news
+
+
+## Owner dashboard upgrade — 20 November 2026
+- Reworked `/admin` into an owner/editor control center while preserving Neon Auth sign-in and existing article/staff APIs.
+- Added live summary cards for total, published, draft and scheduled articles; admin-only active staff count; refresh and public-site shortcuts.
+- Added in-page navigation to create news, manage articles and staff permissions.
+- Added article search and status filtering. Dashboard remains responsive on mobile.
+- Source mirrored in both `Bahawal Digital News/` and `bahawal-digital-news/`.
+- GitHub mirror source commit: `adc198d4fc3de42d0578fbc5271819855c3825f7`.
+- Production deployment requested: `dpl_CZqbbhB4dH2cgGqudSg3CkNopXhi`; build was still running at the time of this status update, so production availability is not yet confirmed.
