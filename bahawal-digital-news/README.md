@@ -9,6 +9,7 @@ Premium bilingual digital newsroom for Bahawalnagar district and global readers.
 - Database: Neon PostgreSQL
 - Authentication: Neon Auth / Better Auth
 - Source of truth: this repository's `Bahawal Digital News/` folder
+- Vercel is not Git-connected to this repository yet; production deployments are currently triggered explicitly from the GitHub source rather than automatically on every push.
 - Deployment mirror: `bahawal-digital-news/`
 
 ## Stack
