@@ -8,25 +8,25 @@ Last updated: 2026-11-20
 - Admin, Editor and Reporter permissions are enforced by server APIs.
 - Reporters can submit and edit their own drafts; they cannot publish or schedule.
 - Admins and Editors can create, edit, publish, schedule, archive and delete articles.
-- Article edits and deletions write to the editorial activity log.
+- Article create, update and delete actions are recorded in the editorial activity log.
 - Admin-only staff management supports role assignment and activation controls.
-- Initial administrator was provisioned: 1 Neon Auth account, 1 active admin staff record.
+- Initial administrator provisioned: 1 Neon Auth account, 1 active admin staff record.
 - Public self-signup is disabled after initial admin setup.
 - Trusted origin is https://bahawal-digital-news.vercel.app; localhost is disabled.
 
 ## CMS milestone delivered
-- Article list includes editorial status and scheduled publication time.
+- Article list includes editorial status, category, language and scheduled publication time.
 - Article editor supports Urdu and English headlines, summaries and body text, categories, location, source attribution and image attachment.
 - Role-aware article PATCH and DELETE APIs enforce author and status restrictions.
 - Media upload endpoint accepts JPEG, PNG, WebP and GIF up to 3.5 MB, restricted to Admin/Editor; files are stored in the existing media table and served through /api/media/{id}.
 - Scheduled publisher endpoint requires the Vercel CRON_SECRET bearer token and publishes due articles.
-- Vercel Hobby supports daily cron only, so the configured publisher runs daily at 00:00 UTC (05:00 Pakistan time). More frequent schedules require Vercel Pro.
+- Vercel Hobby supports daily cron only, so the publisher runs daily at 00:00 UTC (05:00 Pakistan time). More frequent schedules require Vercel Pro.
 - Scheduling input converts newsroom local time to UTC before saving.
 
 ## Production deployment and checks
 - Production deployment: READY.
-- Deployment ID: dpl_8dJL9ENLJFDbmRNnLE3JccgST5E1
-- Commit: b41d2204a8ae525cb92f3d29280b8d0fbe5f5dac
+- Deployment ID: dpl_33PQZ9eSLikkddk17fJ7XjZda2hQ
+- Commit: db50199fcb38546a34d1c132209e8f1cbe6d2e0d
 - Live site: https://bahawal-digital-news.vercel.app
 - Admin page: https://bahawal-digital-news.vercel.app/admin
 - Production build and TypeScript checks completed successfully.
