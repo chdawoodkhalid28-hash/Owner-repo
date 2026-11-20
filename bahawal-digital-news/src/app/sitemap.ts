@@ -6,6 +6,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bahawal-digital-new
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const fixedRoutes: MetadataRoute.Sitemap = [
     { url: baseUrl, changeFrequency: "hourly", priority: 1 },
+    ...["pakistan", "world", "business", "sports", "technology", "education"].map((slug) => ({ url: baseUrl + "/category/" + slug, changeFrequency: "daily" as const, priority: 0.6 })),
     ...["bahawalnagar", "chishtian", "haroonabad", "fort-abbas", "minchinabad", "rural"].map((slug) => ({
       url: baseUrl + "/district/" + slug,
       changeFrequency: "daily" as const,
