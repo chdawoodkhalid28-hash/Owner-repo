@@ -1,50 +1,65 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { neon } from '@neondatabase/serverless';
-function authorized(req: NextRequest) {
-  const expected = process.env.BDN_ADMIN_TOKEN;
-  const supplied = req.headers.get('x-bdn-admin-token');
-  return Boolean(expected && supplied && supplied.length === expected.length && supplied === expected);
-}
-export async function GET(req: NextRequest) {
-  if (!authorized(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  if (!process.env.DATABASE_URL) return NextResponse.json({ error: 'DATABASE_URL is not configured' }, { status: 503 });
+import { NextRequest, NextResponse } from "next/server";
+import { neon } from "@neondatabase/serverless";
+import { getStaffContext, roleCanManageAll } from "@/lib/auth/staff";
+
+export const dynamic = "force-dynamic";
+
+export async function GET() {
   try {
-    const sql = neon(process.env.DATABASE_URL);
-    const [articles, categories] = await Promise.all([
-      sql`SELECT id,title_ur,title_en,slug,status,language,location,created_at,published_at FROM public.articles ORDER BY created_at DESC LIMIT 100`,
-      sql`SELECT id,name_ur,name_en,slug FROM public.categories ORDER BY sort_order,id`
-    ]);
-    return NextResponse.json({ articles, categories });
-  } catch (e) { console.error('admin_list_error', e); return NextResponse.json({ error: 'Unable to load CMS data' }, { status: 500 }); }
+    const { user, authUser } = await getStaffContext();
+    if (!authUser) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!user) return NextResponse.json({ error: "Newsroom role required" }, { status: 403 });
+    const sql = neon(process.env.DATABASE_URL!);
+    const rows = roleCanManageAll(user.role)
+      ? await sql`SELECT id,title_ur,title_en,slug,status,language,location,created_at,published_at,author_id FROM public.articles ORDER BY created_at DESC LIMIT 100`
+      : await sql`SELECT id,title_ur,title_en,slug,status,language,location,created_at,published_at,author_id FROM public.articles WHERE author_id = ${user.id} ORDER BY created_at DESC LIMIT 100`;
+    const categories = await sql`SELECT id,name_ur,name_en,slug FROM public.categories ORDER BY sort_order,id`;
+    return NextResponse.json({ articles: rows, categories, staff: { id: user.id, name: user.name, email: user.email, role: user.role } });
+  } catch (error) {
+    console.error("admin_list_error", error);
+    return NextResponse.json({ error: "Unable to load CMS data" }, { status: 500 });
+  }
 }
+
 export async function POST(req: NextRequest) {
-  if (!authorized(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  if (!process.env.DATABASE_URL) return NextResponse.json({ error: 'DATABASE_URL is not configured' }, { status: 503 });
   try {
-    const b = await req.json();
-    const titleUr = String(b.title_ur || '').trim();
-    const titleEn = String(b.title_en || '').trim();
-    const slug = String(b.slug || '').trim().toLowerCase();
-    const bodyUr = String(b.body_ur || '').trim();
-    const bodyEn = String(b.body_en || '').trim();
-    const language = ['ur','en','both'].includes(b.language) ? b.language : 'both';
-    const status = ['draft','published'].includes(b.status) ? b.status : 'draft';
-    if (!titleUr && !titleEn) return NextResponse.json({ error: 'At least one headline is required' }, { status: 400 });
-    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return NextResponse.json({ error: 'Slug must use lowercase letters, numbers and hyphens' }, { status: 400 });
-    const sql = neon(process.env.DATABASE_URL);
-    const categoryId = b.category_id ? Number(b.category_id) : null;
-    const location = String(b.location || '').trim() || null;
-    const excerptUr = String(b.excerpt_ur || '').trim() || null;
-    const excerptEn = String(b.excerpt_en || '').trim() || null;
-    const imageUrl = String(b.image_url || '').trim() || null;
+    const { user, authUser } = await getStaffContext();
+    if (!authUser) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!user) return NextResponse.json({ error: "Newsroom role required" }, { status: 403 });
+    const body = await req.json();
+    const titleUr = String(body.title_ur || "").trim();
+    const titleEn = String(body.title_en || "").trim();
+    const slug = String(body.slug || "").trim().toLowerCase();
+    const bodyUr = String(body.body_ur || "").trim();
+    const bodyEn = String(body.body_en || "").trim();
+    const language = ["ur", "en", "both"].includes(body.language) ? body.language : "both";
+    const requestedStatus = ["draft", "published"].includes(body.status) ? body.status : "draft";
+    const status = roleCanManageAll(user.role) ? requestedStatus : "draft";
+    if (!titleUr && !titleEn) return NextResponse.json({ error: "At least one headline is required" }, { status: 400 });
+    if (titleUr.length > 300 || titleEn.length > 300 || bodyUr.length > 100000 || bodyEn.length > 100000) {
+      return NextResponse.json({ error: "Article content exceeds allowed limits" }, { status: 400 });
+    }
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return NextResponse.json({ error: "Slug must use lowercase letters, numbers and hyphens" }, { status: 400 });
+    const categoryId = body.category_id ? Number(body.category_id) : null;
+    if (categoryId !== null && (!Number.isSafeInteger(categoryId) || categoryId < 1)) {
+      return NextResponse.json({ error: "Invalid category" }, { status: 400 });
+    }
+    const location = String(body.location || "").trim().slice(0, 160) || null;
+    const excerptUr = String(body.excerpt_ur || "").trim().slice(0, 1000) || null;
+    const excerptEn = String(body.excerpt_en || "").trim().slice(0, 1000) || null;
+    const imageUrl = String(body.image_url || "").trim() || null;
+    if (imageUrl && !/^https:\/\//i.test(imageUrl)) return NextResponse.json({ error: "Image URL must use HTTPS" }, { status: 400 });
+    const sql = neon(process.env.DATABASE_URL!);
     const rows = await sql`INSERT INTO public.articles
-      (title_ur,title_en,slug,excerpt_ur,excerpt_en,body_ur,body_en,language,category_id,location,status,image_url,published_at)
-      VALUES (${titleUr || titleEn},${titleEn || null},${slug},${excerptUr},${excerptEn},${bodyUr || null},${bodyEn || null},${language},${categoryId},${location},${status},${imageUrl},${status === 'published' ? new Date().toISOString() : null})
-      RETURNING id,slug,status`;
-    return NextResponse.json({ article: rows[0] }, { status: 201 });
-  } catch (e: any) {
-    console.error('admin_create_error', e);
-    if (e?.code === '23505') return NextResponse.json({ error: 'This slug already exists' }, { status: 409 });
-    return NextResponse.json({ error: 'Article could not be saved. Check required database fields.' }, { status: 500 });
+      (title_ur,title_en,slug,excerpt_ur,excerpt_en,body_ur,body_en,language,category_id,location,author_id,status,image_url,published_at)
+      VALUES (${titleUr || titleEn},${titleEn || null},${slug},${excerptUr},${excerptEn},${bodyUr || null},${bodyEn || null},${language},${categoryId},${location},${user.id},${status},${imageUrl},${status === "published" ? new Date().toISOString() : null})
+      RETURNING id,slug,status,author_id`;
+    return NextResponse.json({ article: rows[0], notice: user.role === "reporter" && requestedStatus === "published" ? "Reporter submissions are saved as drafts for editorial review." : undefined }, { status: 201 });
+  } catch (error: unknown) {
+    console.error("admin_create_error", error);
+    if (typeof error === "object" && error !== null && "code" in error && error.code === "23505") {
+      return NextResponse.json({ error: "This slug already exists" }, { status: 409 });
+    }
+    return NextResponse.json({ error: "Article could not be saved. Check required fields." }, { status: 500 });
   }
 }
