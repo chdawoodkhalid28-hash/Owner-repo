@@ -15,9 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!process.env.DATABASE_URL) return fixedRoutes;
   try {
     const sql = neon(process.env.DATABASE_URL);
-    const rows = await sql\`SELECT slug, updated_at FROM public.articles
-      WHERE status='published' AND published_at <= now()
-      ORDER BY updated_at DESC LIMIT 5000\`;
+    const rows = await sql`SELECT slug, updated_at FROM public.articles WHERE status='published' AND published_at <= now() ORDER BY updated_at DESC LIMIT 5000`;
     return fixedRoutes.concat(rows.map((row: { slug: string; updated_at: Date | string }) => ({
       url: baseUrl + "/news/" + row.slug,
       lastModified: new Date(row.updated_at),
