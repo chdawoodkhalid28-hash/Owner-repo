@@ -1,0 +1,42 @@
+name: Dependency security audit
+
+on:
+  push:
+    branches:
+      - security/dependency-audit
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: bahawal-digital-news
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+      - name: Resolve dependency tree without running install scripts
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Run full npm audit report
+        run: |
+          npm audit --json --package-lock-only > audit-report.json || true
+          node -e '
+            const r = require("./audit-report.json");
+            console.log(JSON.stringify({
+              metadata: r.metadata?.vulnerabilities,
+              advisories: Object.entries(r.vulnerabilities || {}).map(([name, v]) => ({
+                name,
+                severity: v.severity,
+                direct: v.isDirect,
+                range: v.range,
+                via: v.via,
+                fixAvailable: v.fixAvailable
+              }))
+            }, null, 2));
+          '
