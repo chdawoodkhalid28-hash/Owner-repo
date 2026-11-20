@@ -27,7 +27,7 @@ export async function POST() {
       SELECT id,name,email,role FROM created
       UNION ALL
       SELECT id,name,email,role FROM public.users
-      WHERE auth_user_id = ${account.id}::uuid AND active = true
+      WHERE auth_user_id = ${account.id}::uuid AND active = true AND role = 'admin'
       LIMIT 1`;
     if (!rows.length) return NextResponse.json({ error: "Initial admin setup is closed because a newsroom staff account already exists" }, { status: 409 });
     return NextResponse.json({ user: rows[0], created: true });
