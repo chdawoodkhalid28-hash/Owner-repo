@@ -4,44 +4,42 @@ Last updated: 2026-11-20
 
 ## Neon Auth / staff CMS implementation
 - Neon Managed Better Auth integrated through the Next.js same-origin auth proxy.
-- Server-side session verification maps the authenticated Neon UUID to an active public.users newsroom staff record.
-- Admin, Editor and Reporter roles enforced on the article API.
-- Admin and Editor can read all newsroom articles and publish; Reporter sees their own articles and all their submissions are forced to draft.
-- Admin-only staff API can assign a role to an existing Neon Auth account and activate/deactivate staff.
-- One-time initial-admin bootstrap only accepts the configured owner email and only while public.users is empty.
-- CMS UI now supports Neon Auth sign-in, account registration, initial admin bootstrap, article creation and staff-role management.
-- Neon Auth trusted domain configured as https://bahawal-digital-news.vercel.app; localhost trusted domains disabled.
-- Vercel encrypted variables NEON_AUTH_BASE_URL and NEON_AUTH_COOKIE_SECRET configured.
-- Next.js 16.3.6 and React 19.3.0 used to satisfy Neon Auth adapter peer requirements.
+- Server-side session verification maps authenticated Neon identities to active newsroom staff records.
+- Admin, Editor and Reporter roles are enforced on article APIs.
+- Admin and Editor can manage newsroom content; Reporter submissions are forced to draft.
+- Admin-only staff API supports role assignment and activation controls.
+- One-time initial-admin bootstrap is restricted to the configured owner email and an empty staff table.
+- CMS UI supports Neon Auth sign-in, registration (now closed after bootstrap), initial admin setup, article creation and staff management.
+- Neon Auth trusted origin is https://bahawal-digital-news.vercel.app; localhost is disabled.
+- Vercel encrypted auth environment variables and BDN_BOOTSTRAP_ADMIN_EMAIL are configured.
+- Next.js 16.3.6 and React 19.3.0 satisfy Neon Auth adapter requirements.
 
-## Deployment and live checks
+## Production deployment and verification
 - Production deployment: READY.
-- Deployment ID: dpl_4LZZdQEFg2U2sNFjHcpTGtF8ps9V
-- Commit: d90a7e28d39b9177874e611189a0e68a822dcf2e
-- Admin page /admin loads the Neon Auth sign-in screen.
+- Deployment ID: dpl_2EsufUJJASLyTLYDxXeU9MV415Zm
+- Commit: 5551df3409c31493502d254c357e2b22b4da6323
+- Live site: https://bahawal-digital-news.vercel.app
+- Admin page: https://bahawal-digital-news.vercel.app/admin
+- Admin page loads and shows Neon Auth sign-in.
 - /api/auth/get-session returns null when signed out (expected).
-- /api/admin/me returns HTTP 401 when signed out (expected).
-- /api/admin/articles returns HTTP 401 when signed out (expected).
-- Database still contains 14 categories, 0 articles and 0 staff users. No sample or invented news has been added.
-- Initial owner account is not yet provisioned. Owner email is required to set BDN_BOOTSTRAP_ADMIN_EMAIL; then the owner must register/sign in and initialize the first admin.
+- /api/admin/me and /api/admin/articles return HTTP 401 when signed out (expected).
+- Neon database verification: 1 auth account, 1 staff record, 1 active administrator, 0 articles.
+- Public self-signup has been disabled after initial admin provisioning.
+- No sample or invented news has been published.
 
-## Remaining before calling authentication complete
-- Configure the owner's exact email as BDN_BOOTSTRAP_ADMIN_EMAIL in Vercel.
-- Owner creates/signs in to that Neon Auth account and initializes the first admin.
-- Verify authenticated session persistence, bootstrap succeeds, admin staff listing works, and admin/editor/reporter permission boundaries are enforced.
-- Disable public self-signup after the first admin has been successfully created.
-- Remove the deprecated BDN_ADMIN_TOKEN environment variable only after the new CMS has passed authenticated end-to-end testing.
+## Remaining authentication verification
+- Authenticated browser-session persistence and admin API access still require a signed-in browser E2E check.
+- Verify staff listing and Admin/Editor/Reporter permission boundaries with test accounts before removing deprecated BDN_ADMIN_TOKEN.
+- Keep public self-signup disabled; create additional staff accounts through the controlled admin workflow.
 
 ## Further CMS production work
-- Article edit/delete and scheduling; media uploads; category/tag management; comments moderation; audit workflows.
+- Article editing/deletion and scheduling; media uploads; category/tag management; comment moderation; audit workflows.
 - Rate limiting, security headers, sanitization, automated tests and accessibility checks.
 - Configure custom SMTP and verify newsletter delivery; current newsletter endpoint stores subscriptions only.
 - Monitoring and production operational checks.
 
-## Important
-- Keep DATABASE_URL and NEON_AUTH_COOKIE_SECRET private.
+## Security and editorial notes
+- Keep DATABASE_URL, NEON_AUTH_COOKIE_SECRET and all tokens private.
 - Publish only verified reporting with source attribution and editorial review.
-- Production: https://bahawal-digital-news.vercel.app
-- Admin: https://bahawal-digital-news.vercel.app/admin
 - Canonical GitHub folder: https://github.com/chdawoodkhalid28-hash/Owner-repo/tree/main/Bahawal%20Digital%20News
 - Vercel: https://vercel.com/chdawoodkhalid28-5713/bahawal-digital-news
