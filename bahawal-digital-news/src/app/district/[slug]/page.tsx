@@ -1,0 +1,9 @@
+import {neon} from "@neondatabase/serverless";
+import Link from "next/link";
+const districts:Record<string,{ur:string,en:string,db:string}>={bahawalnagar:{ur:"بہاولنگر",en:"Bahawalnagar",db:"Bahawalnagar"},chishtian:{ur:"چشتیاں",en:"Chishtian",db:"Chishtian"},haroonabad:{ur:"ہارون آباد",en:"Haroonabad",db:"Haroonabad"},"fort-abbas":{ur:"فورٹ عباس",en:"Fort Abbas",db:"Fort Abbas"},minchinabad:{ur:"منچن آباد",en:"Minchinabad",db:"Minchinabad"},rural:{ur:"دیہی علاقے",en:"Rural Areas",db:"Rural"}};
+export default async function DistrictPage({params}:{params:Promise<{slug:string}>}){
+ const {slug}=await params;const d=districts[slug];if(!d)return <main className="detailShell"><Link href="/">← Home</Link><h1>District not found</h1></main>;
+ let rows:any[]=[];
+ if(process.env.DATABASE_URL){try{const sql=neon(process.env.DATABASE_URL);rows=await sql`SELECT id,title_ur,title_en,slug,excerpt_ur,excerpt_en,published_at,location FROM public.articles WHERE status='published' AND published_at<=now() AND location ILIKE ${"%"+d.db+"%"} ORDER BY published_at DESC LIMIT 30`;}catch{}}
+ return <main className="detailShell"><div className="detailTop"><Link href="/">← Bahawal Digital News</Link><span>LOCAL DESK / {d.en.toUpperCase()}</span></div><h1 className="districtTitle">{d.ur} — {d.en}</h1><p className="detailExcerpt">مقامی خبریں، عوامی مسائل اور ترقیاتی سرگرمیاں</p>{rows.length?rows.map(a=><article className="districtStory" key={a.id}><small>{a.location||d.en}</small><h2><Link href={"/news/"+a.slug}>{a.title_ur||a.title_en}</Link></h2><p>{a.excerpt_ur||a.excerpt_en}</p></article>):<div className="emptyState"><h3>اس علاقے کی کوئی خبر ابھی شائع نہیں ہوئی</h3><p>تصدیق شدہ مقامی خبریں شائع ہوتے ہی یہاں دکھائی دیں گی۔</p></div>}</main>
+}
