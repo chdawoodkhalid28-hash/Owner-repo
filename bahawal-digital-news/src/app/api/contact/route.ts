@@ -1,0 +1,25 @@
+import { NextRequest, NextResponse } from "next/server";
+import { neon } from "@neondatabase/serverless";
+export const dynamic = "force-dynamic";
+export async function POST(req: NextRequest) {
+  try {
+    const origin = req.headers.get("origin");
+    if (origin && origin !== req.nextUrl.origin) return NextResponse.json({ error: "Invalid request origin" }, { status: 403 });
+    const body = await req.json();
+    if (typeof body?.website === "string" && body.website.trim()) return NextResponse.json({ ok: true });
+    const name = typeof body?.name === "string" ? body.name.trim() : "";
+    const email = typeof body?.email === "string" ? body.email.trim().toLowerCase() : "";
+    const subject = typeof body?.subject === "string" ? body.subject.trim() : "";
+    const message = typeof body?.message === "string" ? body.message.trim() : "";
+    if (name.length < 2 || name.length > 120 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254 || subject.length < 3 || subject.length > 180 || message.length < 10 || message.length > 10000) {
+      return NextResponse.json({ error: "براہِ کرم تمام معلومات درست اور مکمل درج کریں۔" }, { status: 400 });
+    }
+    if (!process.env.DATABASE_URL) return NextResponse.json({ error: "رابطہ سروس عارضی طور پر دستیاب نہیں۔" }, { status: 503 });
+    const sql = neon(process.env.DATABASE_URL);
+    await sql`INSERT INTO public.contact_submissions(name,email,subject,message) VALUES(${name},${email},${subject},${message})`;
+    return NextResponse.json({ ok: true }, { status: 201 });
+  } catch (error) {
+    console.error("contact_submission_error", error);
+    return NextResponse.json({ error: "پیغام محفوظ نہیں ہو سکا۔ براہِ کرم دوبارہ کوشش کریں۔" }, { status: 500 });
+  }
+}
