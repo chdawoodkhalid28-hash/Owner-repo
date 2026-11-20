@@ -16,7 +16,8 @@ export async function GET(_req: Request, context: { params: Promise<{ id: string
     const bytes = typeof value === "string"
       ? (value.startsWith("\\x") ? Buffer.from(value.slice(2), "hex") : Buffer.from(value, "base64"))
       : Buffer.from(value);
-    return new NextResponse(bytes, { headers: {
+    const body = new Uint8Array(bytes.length); body.set(bytes);
+    return new NextResponse(body, { headers: {
       "Content-Type": String(rows[0].mime_type || "application/octet-stream"),
       "Content-Length": String(bytes.length),
       "Cache-Control": "public, max-age=31536000, immutable",
