@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { neon } from "@neondatabase/serverless";
 export const revalidate = 60;
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const label=labels[slug];return {title:label?label.en+" News | Bahawal Digital News":"News Category | Bahawal Digital News",description:label?"Verified "+label.en+" news and updates from Bahawal Digital News.":"Verified news and updates."};}
 const labels: Record<string,{ur:string;en:string}> = {
  pakistan:{ur:"پاکستان",en:"Pakistan"}, world:{ur:"دنیا",en:"World"}, business:{ur:"کاروبار",en:"Business"}, sports:{ur:"کھیل",en:"Sports"}, technology:{ur:"ٹیکنالوجی",en:"Technology"}, education:{ur:"تعلیم",en:"Education"}
 };
