@@ -16,6 +16,8 @@ export async function POST(req: NextRequest) {
     }
     if (!process.env.DATABASE_URL) return NextResponse.json({ error: "رابطہ سروس عارضی طور پر دستیاب نہیں۔" }, { status: 503 });
     const sql = neon(process.env.DATABASE_URL);
+    const recent = await sql`SELECT count(*)::int AS total FROM public.contact_submissions WHERE lower(email)=lower(${email}) AND created_at > now() - interval '15 minutes'`;
+    if (Number(recent[0]?.total || 0) >= 3) return NextResponse.json({ error: "آپ کے پیغامات کی حد پوری ہو گئی ہے۔ کچھ دیر بعد دوبارہ کوشش کریں۔" }, { status: 429 });
     await sql`INSERT INTO public.contact_submissions(name,email,subject,message) VALUES(${name},${email},${subject},${message})`;
     return NextResponse.json({ ok: true }, { status: 201 });
   } catch (error) {
