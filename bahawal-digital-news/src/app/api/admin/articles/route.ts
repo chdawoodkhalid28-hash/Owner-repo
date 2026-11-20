@@ -11,8 +11,8 @@ export async function GET() {
     if (!user) return NextResponse.json({ error: "Newsroom role required" }, { status: 403 });
     const sql = neon(process.env.DATABASE_URL!);
     const rows = roleCanManageAll(user.role)
-      ? await sql`SELECT id,title_ur,title_en,slug,status,language,location,created_at,published_at,author_id FROM public.articles ORDER BY created_at DESC LIMIT 100`
-      : await sql`SELECT id,title_ur,title_en,slug,status,language,location,created_at,published_at,author_id FROM public.articles WHERE author_id = ${user.id} ORDER BY created_at DESC LIMIT 100`;
+      ? await sql`SELECT id,title_ur,title_en,slug,status,language,location,created_at,published_at,scheduled_at,author_id,excerpt_ur,excerpt_en,body_ur,body_en,image_url,source_attribution FROM public.articles ORDER BY created_at DESC LIMIT 100`
+      : await sql`SELECT id,title_ur,title_en,slug,status,language,location,created_at,published_at,scheduled_at,author_id,excerpt_ur,excerpt_en,body_ur,body_en,image_url,source_attribution FROM public.articles WHERE author_id = ${user.id} ORDER BY created_at DESC LIMIT 100`;
     const categories = await sql`SELECT id,name_ur,name_en,slug FROM public.categories ORDER BY sort_order,id`;
     return NextResponse.json({ articles: rows, categories, staff: { id: user.id, name: user.name, email: user.email, role: user.role } });
   } catch (error) {
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     const bodyUr = String(body.body_ur || "").trim();
     const bodyEn = String(body.body_en || "").trim();
     const language = ["ur", "en", "both"].includes(body.language) ? body.language : "both";
-    const requestedStatus = ["draft", "published"].includes(body.status) ? body.status : "draft";
+    const requestedStatus = ["draft", "published", "scheduled"].includes(body.status) ? body.status : "draft";
     const status = roleCanManageAll(user.role) ? requestedStatus : "draft";
     if (!titleUr && !titleEn) return NextResponse.json({ error: "At least one headline is required" }, { status: 400 });
     if (titleUr.length > 300 || titleEn.length > 300 || bodyUr.length > 100000 || bodyEn.length > 100000) {
@@ -48,6 +48,9 @@ export async function POST(req: NextRequest) {
     const excerptUr = String(body.excerpt_ur || "").trim().slice(0, 1000) || null;
     const excerptEn = String(body.excerpt_en || "").trim().slice(0, 1000) || null;
     const imageUrl = String(body.image_url || "").trim() || null;
+    const scheduledAt = body.scheduled_at ? new Date(body.scheduled_at) : null;
+    if (requestedStatus === "scheduled" && (!scheduledAt || Number.isNaN(scheduledAt.getTime()) || scheduledAt <= new Date())) return NextResponse.json({ error: "Choose a future publication date and time" }, { status: 400 });
+    const sourceAttribution = String(body.source_attribution || "").trim().slice(0, 2000) || null;
     if (imageUrl && !/^https:\/\//i.test(imageUrl)) return NextResponse.json({ error: "Image URL must use HTTPS" }, { status: 400 });
     const sql = neon(process.env.DATABASE_URL!);
     const rows = await sql`INSERT INTO public.articles
