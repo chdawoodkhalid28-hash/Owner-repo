@@ -61,3 +61,11 @@ Last updated: 2026-11-20
 - Source mirrored in both `Bahawal Digital News/` and `bahawal-digital-news/`.
 - GitHub mirror source commit: `adc198d4fc3de42d0578fbc5271819855c3825f7`.
 - Production deployment requested: `dpl_CZqbbhB4dH2cgGqudSg3CkNopXhi`; build was still running at the time of this status update, so production availability is not yet confirmed.
+
+## Production accessibility update — 20 November 2026
+- Vercel project SSO protection was restricted to Preview deployments; Production aliases are now public while Preview deployments remain protected.
+- Re-verified `https://bahawal-digital-news.vercel.app/` returns HTTP 200 and renders the Urdu RTL homepage.
+- Re-verified `https://bahawal-digital-news.vercel.app/admin` returns HTTP 200 and renders the staff sign-in screen.
+- The production deployment remains `dpl_5AiRho1QyAjGDhqFjjTBrkFXpAoY` (`READY`, commit `989c1e54245617c5a689b0866a2acab0f6a6f7d9`).
+- Vercel runtime error scan for the last 7 days returned no runtime errors.
+- Authenticated CMS E2E remains unverified because it requires the owner to sign in interactively; no password is requested or stored in chat.
