@@ -11,7 +11,7 @@ export async function GET() {
     if (!user) return NextResponse.json({ error: "Newsroom role required" }, { status: 403 });
     const sql = neon(process.env.DATABASE_URL!);
     const rows = roleCanManageAll(user.role)
-      ? await sql`SELECT id,title_ur,title_en,slug,status,language,location,created_at,published_at,scheduled_at,author_id,excerpt_ur,excerpt_en,body_ur,body_en,image_url,source_attribution FROM public.articles ORDER BY created_at DESC LIMIT 100`
+      ? await sql`SELECT id,title_ur,title_en,slug,status,language,category_id,location,created_at,published_at,scheduled_at,author_id,excerpt_ur,excerpt_en,body_ur,body_en,image_url,source_attribution FROM public.articles ORDER BY created_at DESC LIMIT 100`
       : await sql`SELECT id,title_ur,title_en,slug,status,language,location,created_at,published_at,scheduled_at,author_id,excerpt_ur,excerpt_en,body_ur,body_en,image_url,source_attribution FROM public.articles WHERE author_id = ${user.id} ORDER BY created_at DESC LIMIT 100`;
     const categories = await sql`SELECT id,name_ur,name_en,slug FROM public.categories ORDER BY sort_order,id`;
     return NextResponse.json({ articles: rows, categories, staff: { id: user.id, name: user.name, email: user.email, role: user.role } });
@@ -57,6 +57,7 @@ export async function POST(req: NextRequest) {
       (title_ur,title_en,slug,excerpt_ur,excerpt_en,body_ur,body_en,language,category_id,location,author_id,status,image_url,source_attribution,published_at,scheduled_at)
       VALUES (${titleUr || titleEn},${titleEn || null},${slug},${excerptUr},${excerptEn},${bodyUr || null},${bodyEn || null},${language},${categoryId},${location},${user.id},${status},${imageUrl},${sourceAttribution},${status === "published" ? new Date().toISOString() : null},${status === "scheduled" ? scheduledAt!.toISOString() : null})
       RETURNING id,slug,status,author_id`;
+    await sql`INSERT INTO public.editorial_activity(user_id,action,entity_type,entity_id,details) VALUES (${user.id},'article_created','article',${Number(rows[0].id)},${JSON.stringify({ slug, status })}::jsonb)`;
     return NextResponse.json({ article: rows[0], notice: user.role === "reporter" && requestedStatus === "published" ? "Reporter submissions are saved as drafts for editorial review." : undefined }, { status: 201 });
   } catch (error: unknown) {
     console.error("admin_create_error", error);
