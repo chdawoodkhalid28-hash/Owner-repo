@@ -51,11 +51,11 @@ export async function POST(req: NextRequest) {
     const scheduledAt = body.scheduled_at ? new Date(body.scheduled_at) : null;
     if (requestedStatus === "scheduled" && (!scheduledAt || Number.isNaN(scheduledAt.getTime()) || scheduledAt <= new Date())) return NextResponse.json({ error: "Choose a future publication date and time" }, { status: 400 });
     const sourceAttribution = String(body.source_attribution || "").trim().slice(0, 2000) || null;
-    if (imageUrl && !/^https:\/\//i.test(imageUrl)) return NextResponse.json({ error: "Image URL must use HTTPS" }, { status: 400 });
+    if (imageUrl && !/^https:\/\//i.test(imageUrl) && !/^\/api\/media\/\d+$/.test(imageUrl)) return NextResponse.json({ error: "Image URL must be HTTPS or a BDN media URL" }, { status: 400 });
     const sql = neon(process.env.DATABASE_URL!);
     const rows = await sql`INSERT INTO public.articles
-      (title_ur,title_en,slug,excerpt_ur,excerpt_en,body_ur,body_en,language,category_id,location,author_id,status,image_url,published_at)
-      VALUES (${titleUr || titleEn},${titleEn || null},${slug},${excerptUr},${excerptEn},${bodyUr || null},${bodyEn || null},${language},${categoryId},${location},${user.id},${status},${imageUrl},${status === "published" ? new Date().toISOString() : null})
+      (title_ur,title_en,slug,excerpt_ur,excerpt_en,body_ur,body_en,language,category_id,location,author_id,status,image_url,source_attribution,published_at,scheduled_at)
+      VALUES (${titleUr || titleEn},${titleEn || null},${slug},${excerptUr},${excerptEn},${bodyUr || null},${bodyEn || null},${language},${categoryId},${location},${user.id},${status},${imageUrl},${sourceAttribution},${status === "published" ? new Date().toISOString() : null},${status === "scheduled" ? scheduledAt!.toISOString() : null})
       RETURNING id,slug,status,author_id`;
     return NextResponse.json({ article: rows[0], notice: user.role === "reporter" && requestedStatus === "published" ? "Reporter submissions are saved as drafts for editorial review." : undefined }, { status: 201 });
   } catch (error: unknown) {
