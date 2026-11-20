@@ -2,7 +2,31 @@
   "name": "bahawal-digital-news",
   "version": "1.0.0",
   "private": true,
-  "scripts": {"dev":"next dev","build":"next build","start":"next start","lint":"tsc --noEmit"},
-  "dependencies": {"@neondatabase/auth":"0.7.0-beta","@neondatabase/serverless":"^1.0.2","next":"16.4.6","react":"19.3.0","react-dom":"19.3.0"},
-  "devDependencies": {"@types/node":"^22.15.30","@types/react":"^19.1.8","typescript":"^5.8.3"}
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@neondatabase/auth": "0.7.0-beta",
+    "@neondatabase/serverless": "^1.0.2",
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "@types/react": "^19.1.8",
+    "typescript": "^5.8.3"
+  },
+  "overrides": {
+    "better-auth": "1.7.26",
+    "@better-auth/core": "1.7.26",
+    "@better-auth/drizzle-adapter": "1.7.26",
+    "@better-auth/api-key": "1.7.26",
+    "@better-auth/passkey": "1.7.26",
+    "@better-auth/oauth-provider": "1.7.26",
+    "zod": "4.6.7"
+  }
 }
