@@ -81,3 +81,160 @@ html[dir="rtl"] .navInner{direction:rtl}html[dir="rtl"] .heroCopy{text-align:rig
   .footerLinks { gap:28px; font-size:11px; }
   .footerBottom { padding:18px 0; font-size:9px; }
 }
+
+
+/* BDN vibrant 3D digital newsroom — desktop-only visual layer */
+@media (min-width: 1024px) {
+  :root {
+    --bdn-electric:#18c8ff;
+    --bdn-violet:#8657ff;
+    --bdn-pink:#ff3f88;
+    --bdn-gold:#ffd166;
+  }
+  body {
+    background:
+      radial-gradient(ellipse at 8% 12%, #8b5cf614 0, transparent 32%),
+      radial-gradient(ellipse at 92% 30%, #12bce812 0, transparent 28%),
+      linear-gradient(135deg,#f4f3ff 0%,#f8fbff 48%,#fff5f8 100%);
+  }
+  .masthead {
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 12% 110%,#7c3aed66 0,transparent 38%),
+      radial-gradient(ellipse at 84% -25%,#06b6d466 0,transparent 42%),
+      linear-gradient(115deg,#080d2b 0%,#17134b 42%,#092d50 100%);
+    border-bottom:1px solid #7b7df966;
+    box-shadow:0 18px 45px #1c1b5940;
+  }
+  .masthead:before,.masthead:after {
+    content:"";position:absolute;pointer-events:none;border-radius:50%;
+    filter:blur(1px);mix-blend-mode:screen;
+  }
+  .masthead:before {width:380px;height:380px;right:8%;top:-300px;border:1px solid #56e2ff55;box-shadow:0 0 0 28px #56e2ff0b,0 0 0 65px #a78bfa0a,0 0 90px #22d3ee44}
+  .masthead:after {width:180px;height:180px;left:34%;bottom:-150px;background:#ff3f8826;box-shadow:0 0 70px #ff3f8866}
+  .brandMark {
+    background:linear-gradient(145deg,#28d8ff 0%,#7654ff 48%,#ff438c 100%);
+    border:1px solid #ffffffa8;
+    box-shadow:0 12px 28px #16c8ff45,0 0 42px #8b5cf655,inset 0 2px 8px #ffffff90,inset 0 -9px 18px #10123d66;
+    transform:perspective(500px) rotateY(-9deg) rotateX(5deg);
+  }
+  .brandMark b {text-shadow:0 2px 0 #14133d,0 5px 12px #070b2c99}
+  .brandText strong {text-shadow:0 3px 22px #22d3ee55}
+  .brandText em {color:#ff78ad;text-shadow:0 0 18px #ff3f8877}
+  .mastTag {color:#e7f5ff;text-shadow:0 0 22px #22d3ee44}
+  .mastTag span {color:#91d9ff}
+  .outlineBtn {border-color:#72dfff88;background:linear-gradient(135deg,#ffffff15,#8b5cf622);box-shadow:inset 0 1px #ffffff33,0 7px 20px #02061744}
+  .outlineBtn:hover {background:linear-gradient(120deg,#0ecbff44,#9b5cff55);box-shadow:0 0 28px #35d5ff55}
+  .nav {background:#ffffffed;backdrop-filter:blur(18px);border-bottom:1px solid #a78bfa44;box-shadow:0 12px 30px #312e8140}
+  .navLinks a:hover {color:#7c3aed}
+  .navLinks a:hover:after {background:linear-gradient(90deg,#06b6d4,#8b5cf6,#ff3f88);box-shadow:0 0 12px #8b5cf688;height:3px}
+  .search {border-left-color:#c4b5fd}
+  .ticker {
+    position:relative;
+    background:linear-gradient(105deg,#10143d,#25206b 48%,#092e50);
+    border:1px solid #7dd3fc66;
+    box-shadow:0 12px 28px #312e8150,inset 0 1px #ffffff25;
+  }
+  .ticker b {background:linear-gradient(135deg,#ff3f88,#ff684a 55%,#ffb347);box-shadow:0 0 22px #ff3f8866}
+  .ticker span {color:#e7edff}
+  .heroMain {
+    position:relative;
+    background:linear-gradient(135deg,#0b1036,#15124d 48%,#063b5b);
+    border:1px solid #7dd3fc55;
+    border-radius:16px;
+    box-shadow:0 28px 65px #17134b35,0 7px 18px #0ea5e933,inset 0 1px #ffffff2b;
+    transform:translateZ(0);
+  }
+  .heroVisual {
+    background:
+      radial-gradient(circle at 52% 42%,#ff438c 0,#a42c85 12%,#542a9c 28%,transparent 53%),
+      radial-gradient(ellipse at 15% 90%,#06b6d455,transparent 45%),
+      linear-gradient(145deg,#142b70,#070b25 78%);
+  }
+  .heroVisual:after {
+    content:"";position:absolute;inset:12% 9%;border:1px solid #8be9ff44;border-radius:48% 52% 42% 58%;
+    transform:rotate(-22deg);box-shadow:0 0 45px #22d3ee22,inset 0 0 35px #8b5cf622;pointer-events:none;
+  }
+  .visualGrid {background-image:linear-gradient(#a5f3fc18 1px,transparent 1px),linear-gradient(90deg,#a5f3fc18 1px,transparent 1px);background-size:32px 32px}
+  .visualOrb {
+    border-color:#b8f4ff99;
+    background:radial-gradient(circle at 35% 28%,#ffffff30,transparent 30%);
+    box-shadow:0 0 0 28px #8b5cf622,0 0 0 72px #22d3ee14,0 0 100px #ff3f8877,inset 0 0 35px #67e8f944;
+  }
+  .visualOrb:before {border-color:#ffb5d8aa;box-shadow:0 0 28px #ff3f8844}
+  .visualOrb:after {border-color:#b7f4ffcc;box-shadow:inset 0 0 25px #22d3ee44}
+  .visualLabel {text-shadow:0 5px 0 #151047,0 12px 35px #020617,0 0 36px #67e8f9aa;letter-spacing:-5px}
+  .visualLabel span {background:linear-gradient(135deg,#ff3f88,#ff9d45);box-shadow:0 0 20px #ff3f8877}
+  .visualLines {height:3px;background:linear-gradient(90deg,#22d3ee,#8b5cf6,#ff3f88,transparent);box-shadow:0 0 16px #22d3ee88}
+  .heroCopy {background:radial-gradient(ellipse at 90% 10%,#8b5cf622,transparent 48%),linear-gradient(145deg,#101944,#091329)}
+  .heroCopy h1 {text-shadow:0 5px 24px #8b5cf644}
+  .heroCopy p {color:#d0def8}
+  .kicker,.sectionEyebrow {color:#8b5cf6}
+  .kicker span {background:linear-gradient(90deg,#06b6d4,#a855f7)}
+  .heroMeta {border-color:#9da9ff33;color:#9fb4dc}
+  .heroAside {
+    border:1px solid #b9a8ff88;border-radius:16px;
+    background:radial-gradient(ellipse at 100% 0,#a78bfa22,transparent 52%),linear-gradient(145deg,#fff,#f4f3ff);
+    box-shadow:0 22px 45px #5145a522,inset 0 1px #fff;
+  }
+  .pulse {color:#ed3e88;text-shadow:0 0 15px #ff3f8866}
+  .asideHeadline {color:#211c59;text-shadow:0 3px 18px #8b5cf622}
+  .asideStat b {color:#30216e}
+  .asideStat {border-color:#d9d1ff}
+  .sectionHead {border-image:linear-gradient(90deg,#06b6d4,#8b5cf6,#ff3f88) 1}
+  .sectionHead h2 {color:#171644;text-shadow:0 4px 20px #8b5cf622}
+  .sectionNote {color:#625e91}
+  .leadCard,.sideStories {
+    border:1px solid #b8b0f366;border-radius:14px;overflow:hidden;
+    box-shadow:0 20px 42px #312e811c,0 5px 12px #06b6d411,inset 0 1px #fff;
+  }
+  .leadImage {
+    background:
+      radial-gradient(circle at 50% 40%,#ff438c,#7531a6 35%,#11245c 78%);
+  }
+  .leadImage:before {
+    content:"";position:absolute;inset:12px;border:1px solid #ffffff55;border-radius:10px;
+    box-shadow:inset 0 0 45px #8b5cf644,0 0 25px #22d3ee22;z-index:1;pointer-events:none;
+  }
+  .imageBadge {background:linear-gradient(120deg,#ff3f88,#ff784f);box-shadow:0 5px 18px #ff3f8866}
+  .imageMonogram {text-shadow:0 5px 0 #34205e,0 12px 35px #030617,0 0 35px #67e8f9aa}
+  .leadBody h3,.miniStory h3 {color:#191744}
+  .readLink {color:#a12ce2}
+  .miniStory {border-color:#e4ddff}
+  .miniNum {color:#a78bfa}
+  .emptyState {border:1px dashed #a78bfa;background:linear-gradient(135deg,#fff,#f3f2ff);border-radius:14px;box-shadow:0 15px 35px #5145a51c}
+  .emptyIcon {color:#29215f;text-shadow:0 5px 20px #8b5cf644}
+  .districtCard {
+    position:relative;overflow:hidden;border:1px solid #c4b5fd;border-radius:12px;
+    background:linear-gradient(145deg,#fff,#f1f0ff);
+    box-shadow:0 14px 28px #5145a51a,inset 0 1px #fff;
+  }
+  .districtCard:before {
+    content:"";position:absolute;width:110px;height:110px;right:-40px;top:-55px;border-radius:50%;
+    background:radial-gradient(circle,#22d3ee55,transparent 70%);transition:transform .3s ease;
+  }
+  .districtCard:hover {border-color:#8b5cf6;box-shadow:0 22px 38px #7c3aed30,0 0 0 1px #22d3ee44;transform:translateY(-5px)}
+  .districtCard:hover:before {transform:scale(2)}
+  .districtNo {color:#8b5cf6}
+  .districtArrow {color:#d946ef}
+  .newsletter {
+    position:relative;overflow:hidden;border:1px solid #8be9ff66;border-radius:16px;
+    background:
+      radial-gradient(ellipse at 10% 120%,#ff3f8866,transparent 38%),
+      radial-gradient(ellipse at 90% -20%,#22d3ee66,transparent 42%),
+      linear-gradient(115deg,#10133f,#33206e 55%,#06405b);
+    box-shadow:0 26px 55px #1e1b5b44,inset 0 1px #ffffff33;
+  }
+  .newsletter:after {content:"";position:absolute;inset:12px;border:1px solid #ffffff22;border-radius:10px;pointer-events:none}
+  .newsLetterMark {color:#fff;text-shadow:0 5px 0 #33206e,0 0 30px #22d3ee88}
+  .newsletterCopy h2 {text-shadow:0 4px 22px #8b5cf688}
+  .newsletterCopy p {color:#d9e5ff}
+  .emailRow {border-radius:8px;box-shadow:0 8px 25px #02061744,inset 0 1px #fff}
+  .emailRow input {background:transparent}
+  .emailRow button {border-radius:5px;background:linear-gradient(120deg,#ff3f88,#f9734b);box-shadow:0 5px 16px #ff3f8855}
+  footer {background:radial-gradient(ellipse at 85% 0,#31206b 0,transparent 38%),linear-gradient(110deg,#070b22,#0b1834 55%,#061a2b);border-top:1px solid #7c3aed66}
+  .footerBrand {text-shadow:0 0 25px #22d3ee66}
+  .footerTop {border-color:#8b5cf633}
+  .footerLinks a:hover {color:#67e8f9}
+}
