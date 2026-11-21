@@ -69,3 +69,12 @@ Last updated: 2026-11-20
 - The production deployment remains `dpl_5AiRho1QyAjGDhqFjjTBrkFXpAoY` (`READY`, commit `989c1e54245617c5a689b0866a2acab0f6a6f7d9`).
 - Vercel runtime error scan for the last 7 days returned no runtime errors.
 - Authenticated CMS E2E remains unverified because it requires the owner to sign in interactively; no password is requested or stored in chat.
+
+
+## Quality assurance update — 21 November 2026
+- Added GitHub Actions CI for push and pull-request changes under bahawal-digital-news: npm install, npm audit, TypeScript check and production build.
+- Clean dependency install verification passed; npm audit reported 0 vulnerabilities; TypeScript and production build passed.
+- Production HTTP checks: homepage and /admin return 200; signed-out /api/admin/me, /api/admin/articles and /api/cron/publish return 401; /api/news, robots.txt and sitemap.xml return 200.
+- Browser QA at 1440px desktop and 390px mobile confirmed no horizontal overflow, sticky masthead remains at viewport top while scrolling, portrait image loads, and no browser console/page errors were recorded.
+- Production Vercel runtime error scan (24h) returned no runtime errors.
+- Remaining owner-assisted checks: authenticated login/OTP/password reset, article CRUD, real media upload and scheduled publish; configure SMTP for newsletter delivery; review non-blocking Better Auth peer dependency warnings and Vercel environment-variable security flags. Do not remove deprecated BDN_ADMIN_TOKEN until authenticated E2E passes.
