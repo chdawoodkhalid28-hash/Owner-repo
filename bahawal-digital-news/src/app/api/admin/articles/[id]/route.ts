@@ -16,6 +16,14 @@ export async function PATCH(req: NextRequest, context: Context) {
     const id = Number(rawId);
     if (!Number.isSafeInteger(id) || id < 1) return NextResponse.json({ error: "Invalid article id" }, { status: 400 });
     const body = await req.json();
+    if (body.restore === true) {
+      if (!roleCanManageAll(user.role)) return NextResponse.json({ error: "Editor or administrator role required" }, { status: 403 });
+      const sql = neon(process.env.DATABASE_URL!);
+      const restored = await sql`UPDATE public.articles SET deleted_at=NULL,updated_at=now() WHERE id=${id} AND deleted_at IS NOT NULL RETURNING id,title_ur,title_en,slug,status`;
+      if (!restored.length) return NextResponse.json({ error: "Trashed article not found" }, { status: 404 });
+      try { await sql`INSERT INTO public.editorial_activity(user_id,action,entity_type,entity_id,details) VALUES (${user.id},'article_restored','article',${id},${JSON.stringify({ slug: restored[0].slug })}::jsonb)`; } catch (logError) { console.error("article_restore_audit_error", logError); }
+      return NextResponse.json({ article: restored[0], restored: true });
+    }
     const titleUr = String(body.title_ur || "").trim();
     const titleEn = String(body.title_en || "").trim();
     const slug = String(body.slug || "").trim().toLowerCase();
@@ -31,7 +39,7 @@ export async function PATCH(req: NextRequest, context: Context) {
     const imageUrl = String(body.image_url || "").trim() || null;
     if (imageUrl && !/^https:\/\//i.test(imageUrl) && !/^\/api\/media\/\d+$/.test(imageUrl)) return NextResponse.json({ error: "Image URL must be HTTPS or a BDN media URL" }, { status: 400 });
     const sql = neon(process.env.DATABASE_URL!);
-    const owned = await sql`SELECT id,status FROM public.articles WHERE id=${id} AND author_id=${user.id} LIMIT 1`;
+    const owned = await sql`SELECT id,status FROM public.articles WHERE id=${id} AND author_id=${user.id} AND deleted_at IS NULL LIMIT 1`;
     if (!roleCanManageAll(user.role) && (!owned.length || owned[0].status !== "draft")) return NextResponse.json({ error: "You may only edit your own draft articles" }, { status: 403 });
     const rows = await sql`UPDATE public.articles SET
       title_ur=${titleUr || titleEn}, title_en=${titleEn || null}, slug=${slug},
@@ -45,10 +53,10 @@ export async function PATCH(req: NextRequest, context: Context) {
       published_at=CASE WHEN ${status}='published' THEN COALESCE(published_at,now()) ELSE NULL END,
       scheduled_at=CASE WHEN ${status}='scheduled' THEN ${scheduledAt ? scheduledAt.toISOString() : null}::timestamptz ELSE NULL END,
       updated_at=now()
-      WHERE id=${id}
-      RETURNING id,title_ur,title_en,slug,status,published_at,scheduled_at`;
+      WHERE id=${id} AND deleted_at IS NULL
+      RETURNING id,title_ur,title_en,slug,status,published_at,scheduled_at,image_url,updated_at`;
     if (!rows.length) return NextResponse.json({ error: "Article not found" }, { status: 404 });
-    await sql`INSERT INTO public.editorial_activity(user_id,action,entity_type,entity_id,details) VALUES (${user.id},'article_updated','article',${id},${JSON.stringify({ status, slug })}::jsonb)`;
+    try { await sql`INSERT INTO public.editorial_activity(user_id,action,entity_type,entity_id,details) VALUES (${user.id},'article_updated','article',${id},${JSON.stringify({ status, slug })}::jsonb)`; } catch (logError) { console.error("article_update_audit_error", logError); }
     return NextResponse.json({ article: rows[0] });
   } catch (error: unknown) {
     console.error("admin_article_update_error", error);
@@ -67,11 +75,11 @@ export async function DELETE(_req: NextRequest, context: Context) {
     if (!Number.isSafeInteger(id) || id < 1) return NextResponse.json({ error: "Invalid article id" }, { status: 400 });
     const sql = neon(process.env.DATABASE_URL!);
     const rows = roleCanManageAll(user.role)
-      ? await sql`DELETE FROM public.articles WHERE id=${id} RETURNING id,slug`
-      : await sql`DELETE FROM public.articles WHERE id=${id} AND author_id=${user.id} AND status='draft' RETURNING id,slug`;
-    if (!rows.length) return NextResponse.json({ error: "Article not found or you do not have permission to delete it" }, { status: 404 });
-    await sql`INSERT INTO public.editorial_activity(user_id,action,entity_type,entity_id,details) VALUES (${user.id},'article_deleted','article',${id},${JSON.stringify({ slug: rows[0].slug })}::jsonb)`;
-    return NextResponse.json({ deleted: true, id });
+      ? await sql`UPDATE public.articles SET deleted_at=now(),updated_at=now() WHERE id=${id} AND deleted_at IS NULL RETURNING id,slug`
+      : await sql`UPDATE public.articles SET deleted_at=now(),updated_at=now() WHERE id=${id} AND author_id=${user.id} AND status='draft' AND deleted_at IS NULL RETURNING id,slug`;
+    if (!rows.length) return NextResponse.json({ error: "Article not found or you do not have permission to move it to trash" }, { status: 404 });
+    try { await sql`INSERT INTO public.editorial_activity(user_id,action,entity_type,entity_id,details) VALUES (${user.id},'article_trashed','article',${id},${JSON.stringify({ slug: rows[0].slug })}::jsonb)`; } catch (logError) { console.error("article_trash_audit_error", logError); }
+    return NextResponse.json({ trashed: true, id });
   } catch (error) {
     console.error("admin_article_delete_error", error);
     return NextResponse.json({ error: "Unable to delete article" }, { status: 500 });
