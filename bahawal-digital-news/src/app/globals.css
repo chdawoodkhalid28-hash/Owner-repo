@@ -3,3 +3,38 @@
 html[dir="rtl"] .navInner{direction:rtl}html[dir="rtl"] .heroCopy{text-align:right}html[dir="rtl"] .leadBody{text-align:right}html[dir="rtl"] .sectionHead{text-align:right}html[dir="rtl"] .districtCard{direction:rtl}html[dir="rtl"] .districtArrow{margin-left:0;margin-right:auto}
 @media(max-width:850px){.mastTag{display:none}.hero{grid-template-columns:1fr}.heroAside{display:grid;grid-template-columns:1fr 1fr;gap:8px}.asideTop,.asideHeadline,.heroAside p,.asideRule{grid-column:1/-1}.asideHeadline{margin-top:8px}.asideRule{display:none}.asideStat{padding:8px 0}.heroMain{min-height:330px}.navInner{align-items:stretch;flex-direction:column;gap:0}.navLinks{gap:18px}.navLinks a{padding:12px 0}.search{border:0;border-top:1px solid #edf0f3;padding:5px 0}.search input{width:100%}.newsletter{grid-template-columns:55px 1fr}.newsletterForm{grid-column:1/-1}.newsGrid{grid-template-columns:1fr}}@media(max-width:560px){.wrap{width:92%}.utilityRight{font-size:0}.utilityRight .lang{font-size:10px}.mastInner{min-height:90px}.brandMark{width:48px;height:48px}.brandMark b{font-size:18px}.brandText strong{font-size:15px}.brandText small{font-size:11px}.mastActions{display:none}.heroMain{grid-template-columns:1fr;min-height:0}.heroVisual{min-height:170px}.heroCopy{padding:25px 22px}.heroCopy h1{font-size:25px}.heroMeta{flex-wrap:wrap}.sectionHead{margin-top:30px}.sectionHead h2{font-size:22px}.sectionNote{display:none}.leadCard{grid-template-columns:1fr}.leadImage{min-height:180px}.leadBody{padding:20px}.districtGrid{grid-template-columns:1fr 1fr}.districtCard{padding:14px 10px;gap:8px}.districtCard strong{font-size:12px}.newsletter{padding:22px 18px;gap:12px}.newsletterCopy h2{font-size:18px}.footerTop{flex-wrap:wrap}.footerLinks{margin-left:0}.footerBottom{flex-direction:column;gap:8px}.ticker{margin-top:12px}.navLinks{gap:14px}.navLinks a{font-size:11px}}
 .detailShell{width:min(900px,92%);margin:38px auto 80px;min-height:65vh;color:#172438}.detailTop{display:flex;justify-content:space-between;gap:20px;padding-bottom:18px;border-bottom:1px solid #dce2e9;font-size:11px;color:#6d7b8c}.detailTop a{color:#c52d43;font-weight:800}.detailArticle{max-width:780px;margin:45px auto}.detailKicker{font:800 10px 'DM Sans';letter-spacing:.16em;color:#d83249}.detailArticle h1,.districtTitle{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(26px,5vw,42px);line-height:2}.detailArticle h2{font-size:19px;color:#6d7b8c}.detailArticle img{width:100%;max-height:470px;object-fit:cover;margin:20px 0}.detailExcerpt{font-family:'Noto Nastaliq Urdu',serif;font-size:18px;line-height:2;color:#46566a}.detailBody{font-family:'Noto Nastaliq Urdu',serif;font-size:17px;line-height:2.5;white-space:pre-wrap}.detailSource{border-top:1px solid #dce2e9;margin-top:35px;padding-top:15px;color:#788597;font-size:11px}.districtStory{background:white;border:1px solid #e1e6eb;padding:22px;margin:12px 0}.districtStory small{color:#d83249}.districtStory h2{font-family:'Noto Nastaliq Urdu',serif;font-size:21px}.districtStory p{color:#718093;font-size:12px}
+/* BDN premium masthead refresh — navy / gold / purple / cyan */
+:root{--navy:#071326;--navy2:#101b38;--panel:#171f42;--red:#a78bfa;--red2:#45dcf5;--gold:#e7c879;--purple:#9b7cff;--cyan:#45dcf5}
+.masthead{position:sticky;top:0;z-index:60;background:linear-gradient(112deg,#050e1d 0%,#101b38 52%,#251b49 100%);border-bottom:1px solid rgba(231,200,121,.42);box-shadow:0 10px 34px rgba(2,8,22,.42),0 1px 0 rgba(69,220,245,.14);backdrop-filter:blur(16px)}
+.mastInner{min-height:124px;gap:28px}
+.brand{gap:17px;align-items:center}
+.brandMark{width:82px;height:82px;flex-basis:82px;border:2px solid var(--gold);box-shadow:0 0 0 4px rgba(231,200,121,.12),0 0 24px rgba(231,200,121,.36),0 0 42px rgba(155,124,255,.22);isolation:isolate}
+.brandMark img{position:relative;z-index:0;object-position:center 34%;filter:saturate(1.08) contrast(1.04)}
+.brandMark:before{content:"";position:absolute;z-index:2;inset:0;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 18% 22%,#fff4 0 1px,transparent 2px),radial-gradient(circle at 79% 19%,#f6d98d 0 1.3px,transparent 2.5px),radial-gradient(circle at 22% 75%,#fff0c7 0 1px,transparent 2.5px),radial-gradient(circle at 76% 77%,#f6d98d 0 1px,transparent 2.5px),radial-gradient(circle at 50% 4%,#fff 0 1px,transparent 2px),linear-gradient(145deg,rgba(231,200,121,.15),transparent 42%,rgba(69,220,245,.12))}
+.brandMark:after{content:"";position:absolute;z-index:3;inset:5px;border:1px solid rgba(255,232,173,.65);border-radius:50%;pointer-events:none;box-shadow:inset 0 0 14px rgba(231,200,121,.12)}
+.brandMark i{z-index:4;right:8px;top:8px;width:7px;height:7px;background:var(--cyan);box-shadow:0 0 12px var(--cyan),0 0 20px rgba(69,220,245,.7)}
+.brandText strong{font-size:clamp(17px,1.65vw,23px);letter-spacing:.095em;text-shadow:0 2px 18px rgba(69,220,245,.12)}
+.brandText em{color:var(--gold);font-style:normal}
+.brandText small{color:#f1dca7;font-size:14px;text-shadow:0 0 14px rgba(231,200,121,.22)}
+.mastTag{color:#dce7f7;letter-spacing:.02em}
+.mastTag span{color:#8c9db9}
+.outlineBtn{border-color:rgba(69,220,245,.55);color:#dffaff;box-shadow:inset 0 0 16px rgba(69,220,245,.06);transition:background .2s,border-color .2s}
+.outlineBtn:hover{background:rgba(69,220,245,.1);border-color:var(--cyan)}
+.outlineBtn span{color:var(--cyan)}
+.navLinks a:hover{color:#7055c8}.navLinks a:hover:after{background:linear-gradient(90deg,var(--purple),var(--cyan))}
+.ticker b{background:linear-gradient(110deg,#7654d7,#24b8d7)}
+.kicker span{background:linear-gradient(90deg,var(--gold),var(--cyan))}
+.heroVisual{background-size:cover;background-position:center 35%;isolation:isolate}
+.heroVisual:after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,rgba(5,13,28,.05),rgba(7,19,38,.35)),radial-gradient(circle at 58% 46%,rgba(231,200,121,.12),transparent 52%);pointer-events:none}
+.heroCopy{background:linear-gradient(145deg,#0a1730,#151b3b 70%,#211b42)}
+.heroCopy h1{color:#fff;text-shadow:0 3px 20px rgba(69,220,245,.12)}
+.heroAside{border-top:2px solid var(--purple)}
+.pulse{color:#159ab9}
+.imageBadge{background:linear-gradient(110deg,#7757d8,#20b7d3)}
+.readLink,.districtNo{color:#7356c8}
+.districtCard:hover{border-color:var(--cyan);box-shadow:0 8px 22px rgba(69,220,245,.12)}
+.emailRow button{background:linear-gradient(110deg,#7654d7,#1eaecb)}
+.newsLetterMark span,.footerBrand span,.imageMonogram span,.emptyIcon span{color:var(--cyan)}
+.sectionEyebrow{color:#795cce}
+@media(max-width:850px){.mastInner{min-height:106px}.brandMark{width:68px;height:68px;flex-basis:68px}}
+@media(max-width:560px){.mastInner{min-height:84px}.brand{gap:11px}.brandMark{width:54px;height:54px;flex-basis:54px}.brandText strong{font-size:14px;letter-spacing:.055em}.brandText small{font-size:11px}.masthead{box-shadow:0 7px 24px rgba(2,8,22,.38)}}
