@@ -440,3 +440,37 @@ html[dir="rtl"] .navInner{direction:rtl}html[dir="rtl"] .heroCopy{text-align:rig
   .nawabPortraitCaption {display:none}
   .visualLabel {z-index:3;top:12%;font-size:34px}
 }
+
+
+/* Depth-focused royal portrait: mature 1933 studio photograph */
+@media (min-width:1024px) {
+ .heroVisual {isolation:isolate;background:
+   radial-gradient(ellipse at 51% 55%,#f5c76c55 0%,#b8863b22 27%,transparent 60%),
+   radial-gradient(ellipse at 15% 90%,#06c6d955 0%,transparent 44%),
+   radial-gradient(ellipse at 90% 8%,#8b5cf755 0%,transparent 42%),
+   linear-gradient(135deg,#15112f 0%,#0b1834 52%,#050d1c 100%);}
+ .heroVisual:after {content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+   background:radial-gradient(ellipse at 50% 52%,transparent 24%,#03081744 78%,#030817a8 100%),
+   linear-gradient(0deg,#050b19bb 0%,transparent 42%,#0b123022 100%);}
+ .nawabPortrait {z-index:2;left:50%;bottom:-3%;width:min(82%,440px);height:94%;
+   object-fit:contain;object-position:center bottom;transform:translateX(-50%) scale(1.06);
+   filter:sepia(.42) saturate(.9) contrast(1.22) brightness(1.12)
+     drop-shadow(0 0 12px #f6d58b88) drop-shadow(0 0 44px #d9a44177) drop-shadow(0 24px 38px #020617cc);
+   mix-blend-mode:screen;opacity:.96;
+   -webkit-mask-image:radial-gradient(ellipse 75% 80% at 50% 50%,#000 58%,#000c 78%,transparent 100%);
+   mask-image:radial-gradient(ellipse 75% 80% at 50% 50%,#000 58%,#000c 78%,transparent 100%);}
+ .nawabPortraitCaption {bottom:14px;background:linear-gradient(110deg,#090f21e8,#34234be8);
+   border-color:#f6d58baa;box-shadow:0 10px 34px #020617bb,0 0 35px #f5c66b44;}
+ .visualOrb {z-index:1;width:390px;height:390px;border-color:#f8d58b66;
+   box-shadow:0 0 0 24px #f5c66b18,0 0 0 68px #22d3ee12,0 0 0 116px #f5c66b0a,
+   0 0 140px #f5b94255,inset 0 0 65px #f5c66b22;}
+ .visualRingOne,.visualRingTwo {z-index:1;opacity:.9;filter:drop-shadow(0 0 9px #f8d58b88);}
+ .visualGrid {z-index:0;opacity:.5}
+ .visualLabel {z-index:4;top:10%;text-shadow:0 0 24px #f5c66b88}
+ .visualFloatTop,.visualFloatBottom {z-index:5}
+ .nawabPortraitCaption {z-index:5}
+}
+@media (max-width:1023px) {
+ .heroVisual {isolation:isolate}
+ .nawabPortrait {content-visibility:auto;opacity:.96;filter:sepia(.4) contrast(1.18) drop-shadow(0 0 22px #f5c66b88);mix-blend-mode:screen}
+}
