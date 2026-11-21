@@ -11,8 +11,8 @@ export async function GET() {
     if (!user) return NextResponse.json({ error: "Newsroom role required" }, { status: 403 });
     const sql = neon(process.env.DATABASE_URL!);
     const rows = roleCanManageAll(user.role)
-      ? await sql`SELECT id,title_ur,title_en,slug,status,language,category_id,location,created_at,published_at,scheduled_at,author_id,excerpt_ur,excerpt_en,body_ur,body_en,image_url,source_attribution FROM public.articles ORDER BY created_at DESC LIMIT 100`
-      : await sql`SELECT id,title_ur,title_en,slug,status,language,category_id,location,created_at,published_at,scheduled_at,author_id,excerpt_ur,excerpt_en,body_ur,body_en,image_url,source_attribution FROM public.articles WHERE author_id = ${user.id} ORDER BY created_at DESC LIMIT 100`;
+      ? await sql`SELECT id,title_ur,title_en,slug,status,language,category_id,location,created_at,published_at,scheduled_at,author_id,excerpt_ur,excerpt_en,body_ur,body_en,image_url,source_attribution,deleted_at FROM public.articles ORDER BY created_at DESC LIMIT 100`
+      : await sql`SELECT id,title_ur,title_en,slug,status,language,category_id,location,created_at,published_at,scheduled_at,author_id,excerpt_ur,excerpt_en,body_ur,body_en,image_url,source_attribution,deleted_at FROM public.articles WHERE author_id = ${user.id} ORDER BY created_at DESC LIMIT 100`;
     const categories = await sql`SELECT id,name_ur,name_en,slug FROM public.categories ORDER BY sort_order,id`;
     return NextResponse.json({ articles: rows, categories, staff: { id: user.id, name: user.name, email: user.email, role: user.role } });
   } catch (error) {
