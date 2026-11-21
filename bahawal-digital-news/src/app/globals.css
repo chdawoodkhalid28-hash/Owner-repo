@@ -3,3 +3,81 @@
 html[dir="rtl"] .navInner{direction:rtl}html[dir="rtl"] .heroCopy{text-align:right}html[dir="rtl"] .leadBody{text-align:right}html[dir="rtl"] .sectionHead{text-align:right}html[dir="rtl"] .districtCard{direction:rtl}html[dir="rtl"] .districtArrow{margin-left:0;margin-right:auto}
 @media(max-width:850px){.mastTag{display:none}.hero{grid-template-columns:1fr}.heroAside{display:grid;grid-template-columns:1fr 1fr;gap:8px}.asideTop,.asideHeadline,.heroAside p,.asideRule{grid-column:1/-1}.asideHeadline{margin-top:8px}.asideRule{display:none}.asideStat{padding:8px 0}.heroMain{min-height:330px}.navInner{align-items:stretch;flex-direction:column;gap:0}.navLinks{gap:18px}.navLinks a{padding:12px 0}.search{border:0;border-top:1px solid #edf0f3;padding:5px 0}.search input{width:100%}.newsletter{grid-template-columns:55px 1fr}.newsletterForm{grid-column:1/-1}.newsGrid{grid-template-columns:1fr}}@media(max-width:560px){.wrap{width:92%}.utilityRight{font-size:0}.utilityRight .lang{font-size:10px}.mastInner{min-height:90px}.brandMark{width:48px;height:48px}.brandMark b{font-size:18px}.brandText strong{font-size:15px}.brandText small{font-size:11px}.mastActions{display:none}.heroMain{grid-template-columns:1fr;min-height:0}.heroVisual{min-height:170px}.heroCopy{padding:25px 22px}.heroCopy h1{font-size:25px}.heroMeta{flex-wrap:wrap}.sectionHead{margin-top:30px}.sectionHead h2{font-size:22px}.sectionNote{display:none}.leadCard{grid-template-columns:1fr}.leadImage{min-height:180px}.leadBody{padding:20px}.districtGrid{grid-template-columns:1fr 1fr}.districtCard{padding:14px 10px;gap:8px}.districtCard strong{font-size:12px}.newsletter{padding:22px 18px;gap:12px}.newsletterCopy h2{font-size:18px}.footerTop{flex-wrap:wrap}.footerLinks{margin-left:0}.footerBottom{flex-direction:column;gap:8px}.ticker{margin-top:12px}.navLinks{gap:14px}.navLinks a{font-size:11px}}
 .detailShell{width:min(900px,92%);margin:38px auto 80px;min-height:65vh;color:#172438}.detailTop{display:flex;justify-content:space-between;gap:20px;padding-bottom:18px;border-bottom:1px solid #dce2e9;font-size:11px;color:#6d7b8c}.detailTop a{color:#c52d43;font-weight:800}.detailArticle{max-width:780px;margin:45px auto}.detailKicker{font:800 10px 'DM Sans';letter-spacing:.16em;color:#d83249}.detailArticle h1,.districtTitle{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(26px,5vw,42px);line-height:2}.detailArticle h2{font-size:19px;color:#6d7b8c}.detailArticle img{width:100%;max-height:470px;object-fit:cover;margin:20px 0}.detailExcerpt{font-family:'Noto Nastaliq Urdu',serif;font-size:18px;line-height:2;color:#46566a}.detailBody{font-family:'Noto Nastaliq Urdu',serif;font-size:17px;line-height:2.5;white-space:pre-wrap}.detailSource{border-top:1px solid #dce2e9;margin-top:35px;padding-top:15px;color:#788597;font-size:11px}.districtStory{background:white;border:1px solid #e1e6eb;padding:22px;margin:12px 0}.districtStory small{color:#d83249}.districtStory h2{font-family:'Noto Nastaliq Urdu',serif;font-size:21px}.districtStory p{color:#718093;font-size:12px}
+
+/* BDN desktop editorial refresh — isolated to wide screens */
+@media (min-width: 1024px) {
+  :root { --navy:#071426; --navy2:#102944; --red:#c92f48; --red2:#f05a70; --line:#d9dee5; --gold:#c6a568; }
+  body { background:#f0f2f5; color:#101d2c; }
+  .wrap { width:min(1380px, 91%); }
+  .utility { background:#050d18; font-size:11px; }
+  .utilityInner { min-height:38px; }
+  .masthead { background:linear-gradient(112deg,#061323 0%,#102b47 58%,#172f48 100%); border-bottom:1px solid #31475d; }
+  .mastInner { min-height:142px; }
+  .brand { gap:18px; }
+  .brandMark { width:72px; height:72px; border-radius:18px; box-shadow:0 10px 34px #e6395030, inset 0 0 0 1px #ffffff12; }
+  .brandMark b { font-size:25px; }
+  .brandText strong { font-size:25px; letter-spacing:.1em; }
+  .brandText small { font-size:15px; margin-top:8px; }
+  .mastTag { font-size:15px; letter-spacing:.02em; }
+  .mastTag span { font-size:10px; letter-spacing:.24em; }
+  .outlineBtn { padding:13px 19px; border-color:#71849a; transition:.2s ease; }
+  .outlineBtn:hover { background:#ffffff12; border-color:#fff; }
+  .nav { background:#fff; box-shadow:0 8px 24px #08182a0b; }
+  .navInner { min-height:62px; }
+  .navLinks { gap:30px; }
+  .navLinks a { font-size:13px; padding:22px 0; }
+  .search { min-width:205px; padding-left:18px; }
+  .search input { width:165px; font-size:12px; }
+  .ticker { height:48px; margin:24px 0 26px; border-radius:2px; padding:0 20px; box-shadow:0 8px 20px #07142612; }
+  .ticker b { padding:9px 15px; font-size:10px; }
+  .ticker span { font-size:12px; }
+  .hero { grid-template-columns:minmax(0,2.05fr) minmax(285px,.78fr); gap:22px; }
+  .heroMain { min-height:470px; grid-template-columns:1.04fr .96fr; border-radius:2px; box-shadow:0 24px 55px #07142622; }
+  .heroVisual { background:radial-gradient(circle at 52% 42%,#d44760 0,#72243e 18%,transparent 46%),linear-gradient(145deg,#183b5b,#050b15 78%); }
+  .visualOrb { width:300px; height:300px; box-shadow:0 0 0 28px #f4a4a40a,0 0 0 72px #f4a4a408,0 0 90px #ed334455; }
+  .visualLabel { font-size:54px; }
+  .heroCopy { padding:56px 48px; }
+  .heroCopy h1 { font-size:clamp(34px,3.15vw,48px); line-height:1.85; margin:25px 0 16px; }
+  .heroCopy p { font-size:14px; line-height:2.2; max-width:520px; }
+  .heroMeta { margin-top:32px; padding-top:18px; font-size:9px; }
+  .heroAside { padding:32px 30px; box-shadow:0 12px 34px #0714260a; }
+  .asideTop { font-size:10px; }
+  .asideHeadline { font-size:27px; line-height:1.9; margin-top:42px; }
+  .heroAside p { font-size:13px; line-height:2.2; }
+  .asideStat { padding:17px 0; }
+  .asideStat b { font-size:24px; }
+  .sectionHead { margin:54px 0 22px; padding-bottom:16px; }
+  .sectionHead h2 { font-size:32px; }
+  .sectionNote { font-size:11px; }
+  .newsGrid { grid-template-columns:minmax(0,1.18fr) minmax(380px,.82fr); gap:24px; }
+  .leadCard { min-height:350px; box-shadow:0 10px 28px #0714260a; }
+  .leadImage { min-height:350px; }
+  .leadBody { padding:34px; }
+  .leadBody h3 { font-size:25px; line-height:2; }
+  .leadBody p { font-size:13px; line-height:2.1; }
+  .sideStories { padding:10px 28px; box-shadow:0 10px 28px #0714260a; }
+  .miniStory { grid-template-columns:46px 1fr; gap:18px; padding:23px 0; }
+  .miniNum { font-size:21px; }
+  .miniStory h3 { font-size:18px; line-height:1.9; }
+  .miniStory p { font-size:12px; line-height:2; }
+  .emptyState { padding:66px 25px; box-shadow:0 10px 28px #07142608; }
+  .emptyIcon { font-size:40px; }
+  .emptyState h3 { font-size:24px; }
+  .emptyState p { font-size:13px; }
+  .districtGrid { gap:14px; }
+  .districtCard { padding:24px 26px; min-height:88px; box-shadow:0 8px 22px #07142608; }
+  .districtCard strong { font-size:19px; }
+  .districtCard:hover { transform:translateY(-4px); box-shadow:0 14px 30px #09182a14; }
+  .newsletter { margin:62px 0 72px; padding:42px 48px; grid-template-columns:100px 1fr minmax(320px,.8fr); gap:34px; box-shadow:0 20px 42px #07142620; }
+  .newsLetterMark { font-size:40px; }
+  .newsletterCopy h2 { font-size:27px; }
+  .newsletterCopy p { font-size:12px; }
+  .emailRow { padding:5px; }
+  .emailRow input { padding:13px; font-size:12px; }
+  .emailRow button { padding:0 20px; font-size:11px; }
+  .footerTop { padding:36px 0; }
+  .footerBrand { font-size:31px; }
+  .footerTop p { font-size:15px; }
+  .footerLinks { gap:28px; font-size:11px; }
+  .footerBottom { padding:18px 0; font-size:9px; }
+}
