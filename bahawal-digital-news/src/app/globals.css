@@ -38,3 +38,11 @@ html[dir="rtl"] .navInner{direction:rtl}html[dir="rtl"] .heroCopy{text-align:rig
 .sectionEyebrow{color:#795cce}
 @media(max-width:850px){.mastInner{min-height:106px}.brandMark{width:68px;height:68px;flex-basis:68px}}
 @media(max-width:560px){.mastInner{min-height:84px}.brand{gap:11px}.brandMark{width:54px;height:54px;flex-basis:54px}.brandText strong{font-size:14px;letter-spacing:.055em}.brandText small{font-size:11px}.masthead{box-shadow:0 7px 24px rgba(2,8,22,.38)}}
+
+/* WCAG AA contrast and semantic image-role fixes */
+.pulse{color:#00677c}
+.asideStat span{color:#596879}
+.districtStory p{color:#566476}
+.sectionNote{color:#596879}
+.footerBottom{color:#9aa8b8}
+.detailTop{color:#566476}
