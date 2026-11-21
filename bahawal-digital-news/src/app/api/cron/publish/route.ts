@@ -11,7 +11,7 @@ export async function GET(req: Request) {
     const sql = neon(process.env.DATABASE_URL!);
     const published = await sql`UPDATE public.articles
       SET status='published',published_at=now(),scheduled_at=NULL,updated_at=now()
-      WHERE status='scheduled' AND scheduled_at IS NOT NULL AND scheduled_at<=now()
+      WHERE status='scheduled' AND deleted_at IS NULL AND scheduled_at IS NOT NULL AND scheduled_at<=now()
       RETURNING id,slug`;
     for (const article of published) {
       await sql`INSERT INTO public.editorial_activity(user_id,action,entity_type,entity_id,details)
