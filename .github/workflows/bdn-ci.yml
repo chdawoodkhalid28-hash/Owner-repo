@@ -1,0 +1,36 @@
+name: Bahawal Digital News CI
+
+on:
+  push:
+    paths:
+      - "bahawal-digital-news/**"
+      - ".github/workflows/bdn-ci.yml"
+  pull_request:
+    paths:
+      - "bahawal-digital-news/**"
+      - ".github/workflows/bdn-ci.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: bahawal-digital-news
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Audit dependencies
+        run: npm audit --audit-level=high
+      - name: TypeScript check
+        run: npm run lint
+      - name: Production build
+        run: npm run build
+        env:
+          NEON_AUTH_BASE_URL: https://build-placeholder.neon.tech/auth
+          NEON_AUTH_COOKIE_SECRET: ci-build-only-placeholder-secret-32-characters-long
