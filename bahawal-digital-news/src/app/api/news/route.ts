@@ -11,7 +11,7 @@ export async function GET() {
         c.name_ur AS category_name_ur,c.name_en AS category_name_en
       FROM public.articles a
       LEFT JOIN public.categories c ON c.id=a.category_id
-      WHERE a.status='published' AND a.published_at <= now()
+      WHERE a.status='published' AND a.deleted_at IS NULL AND a.published_at <= now()
       ORDER BY a.featured DESC,a.published_at DESC
       LIMIT 30`;
     return NextResponse.json({ articles: rows, source: "database" }, { headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300" } });
