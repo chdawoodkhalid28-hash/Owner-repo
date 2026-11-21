@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
     }
 
     const email = typeof body?.email === "string" ? body.email.trim().toLowerCase() : "";
-    if (email.length > 254 || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
+    if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json({ error: "A valid email address is required." }, { status: 400 });
     }
 
