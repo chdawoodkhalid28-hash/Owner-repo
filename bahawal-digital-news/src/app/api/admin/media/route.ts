@@ -17,6 +17,12 @@ export async function POST(req: NextRequest) {
     if (!allowed.has(file.type)) return NextResponse.json({ error: "Only JPEG, PNG, WebP and GIF images are supported" }, { status: 415 });
     if (file.size < 1 || file.size > 3_500_000) return NextResponse.json({ error: "Image must be smaller than 3.5 MB" }, { status: 413 });
     const bytes = Buffer.from(await file.arrayBuffer());
+    const isJpeg = bytes.length >= 3 && bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff;
+    const isPng = bytes.length >= 8 && bytes.subarray(0, 8).equals(Buffer.from([0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a]));
+    const isGif = bytes.length >= 6 && (bytes.subarray(0, 6).toString("ascii") === "GIF87a" || bytes.subarray(0, 6).toString("ascii") === "GIF89a");
+    const isWebp = bytes.length >= 12 && bytes.subarray(0, 4).toString("ascii") === "RIFF" && bytes.subarray(8, 12).toString("ascii") === "WEBP";
+    const signatureMatches = (file.type === "image/jpeg" && isJpeg) || (file.type === "image/png" && isPng) || (file.type === "image/gif" && isGif) || (file.type === "image/webp" && isWebp);
+    if (!signatureMatches) return NextResponse.json({ error: "The uploaded file content does not match its image type" }, { status: 415 });
     const alt = String(form.get("alt_text") || "").trim().slice(0, 300) || null;
     const caption = String(form.get("caption") || "").trim().slice(0, 500) || null;
     const credit = String(form.get("credit") || "").trim().slice(0, 300) || null;
