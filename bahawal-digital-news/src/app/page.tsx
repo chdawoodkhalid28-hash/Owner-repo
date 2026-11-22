@@ -19,8 +19,40 @@ export default function Home(){
   <nav className="nav"><div className="wrap navInner"><div className="navLinks">{cats.map(c=><a key={c[0]} href={c[0]==="top"?"#top":c[0]==="local"?"#districts":`/category/${c[0]}`}>{lang==="ur"?c[1]:c[2]}</a>)}</div><label className="search"><span>⌕</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder={t.search}/></label></div></nav>
   <div className="wrap">
    <div className="ticker"><b>{t.breaking}</b><span>{lang==="ur"?"بہاولنگر اور دنیا بھر کی مصدقہ خبروں کے لیے ہمارے ساتھ رہیے۔":"Stay with us for verified updates from Bahawalnagar and around the world."}</span><span className="liveDot"/></div>
-   <section className="hero" id="top"><div className="heroMain"><div className="heroVisual" role="img" aria-label="Nawab Sahib portrait with BDN news identity"><img className="heroPortraitImage" src="https://asset.imagine.art/processed/4a98e827-f72f-4d63-b107-7fcf24fb2d27" alt="Portrait of Nawab Sahib"/><div className="heroVisualBrand"><span className="heroBrandEyebrow">BAHAWAL DIGITAL NEWS</span><strong>BDN <em>NEWS</em></strong><span className="heroBrandUrdu">بہاول ڈیجیٹل نیوز</span><span className="heroBrandRule"/></div></div><div className="heroCopy"><div className="kicker"><span/> {t.edition}</div><h1>{lang==="ur"?"خبر وہی، جو تصدیق کے بعد":"News that matters. Verified."}</h1><p>{lang==="ur"?"بہاولپور، بہاولنگر، رحیم یار خان اور دنیا بھر کی اہم خبریں — ذمہ دارانہ صحافت کے ساتھ۔":"Verified reporting from Bahawalpur, Bahawalnagar and Rahim Yar Khan, alongside the national and global stories shaping your world."}</p><div className="heroMeta"><span>INDEPENDENT JOURNALISM</span><span>EST. BAHWALNAGAR</span></div></div></div>
-    <aside className="heroAside"><div className="asideTop"><span>THE NEWSROOM</span><span className="pulse">● LIVE DESK</span></div><div className="asideHeadline">{lang==="ur"?"مقامی خبر، قومی اہمیت":"Local insight. Wider perspective."}</div><p>{lang==="ur"?"عوامی مسائل، مقامی ترقی، تعلیم، زراعت، کاروبار اور شہری زندگی پر توجہ۔":"Focused coverage of public affairs, development, education, agriculture, business and community life."}</p><div className="asideRule"/><div className="asideStat"><b>06</b><span>{lang==="ur"?"مقامی علاقے":"LOCAL AREAS"}</span></div><div className="asideStat"><b>24/7</b><span>{lang==="ur"?"نیوز روم اپ ڈیٹس":"NEWSROOM UPDATES"}</span></div></aside>
+   <section className="hero" id="top">
+    <div className="heroMain">
+     <div className="heroVisual" role="img" aria-label="Nawab Sahib portrait — the heritage and identity of Bahawal Digital News">
+      <div className="heroPortraitAura"/>
+      <img className="heroPortraitImage" src="https://asset.imagine.art/processed/4a98e827-f72f-4d63-b107-7fcf24fb2d27" alt="Portrait of Nawab Sahib"/>
+      <div className="heroPortraitFrame"/>
+      <div className="heroVisualBrand">
+       <span className="heroBrandEyebrow">THE LEGACY · THE REGION · THE PEOPLE</span>
+       <strong>BDN <em>NEWS</em></strong>
+       <span className="heroBrandUrdu">بہاول ڈیجیٹل نیوز</span>
+       <span className="heroBrandRule"/>
+       <span className="heroBrandTagline">{lang==="ur"?"بہاولپور ڈویژن کی آواز":"THE VOICE OF BAHAWALPUR DIVISION"}</span>
+      </div>
+      <div className="heroSeal"><span>BDN</span><i>EST.</i></div>
+      <div className="heroImageCaption">{lang==="ur"?"تاریخ سے جڑی شناخت":"A REGION. A LEGACY. A VOICE."}</div>
+     </div>
+     <div className="heroCopy">
+      <div className="heroIssue"><span className="issueLine"/> {lang==="ur"?"خصوصی ڈیجیٹل ایڈیشن":"THE DIGITAL EDITION"} <span className="issueDate">{new Date().getFullYear()}</span></div>
+      <div className="kicker"><span/> {t.edition}</div>
+      <h1>{lang==="ur"?"خبر، تاریخ اور عوام کی آواز":"A legacy of pride. Journalism with purpose."}</h1>
+      <p>{lang==="ur"?"بہاولپور ڈویژن کی تاریخ، تہذیب اور عوامی زندگی سے جڑی مستند خبریں۔ نواب صاحب کے تاریخی ورثے کو خراجِ عقیدت اور نئی نسل کے لیے ذمہ دار ڈیجیٹل صحافت۔":"Rooted in the history and spirit of Bahawalpur Division. Independent, verified journalism that honours our heritage and serves the people of today."}</p>
+      <div className="heroActions"><a href="#latest" className="heroPrimary">{lang==="ur"?"تازہ خبریں پڑھیں":"EXPLORE THE LATEST"} <span>↗</span></a><a href="/about" className="heroSecondary">{lang==="ur"?"ہمارا مشن":"OUR MISSION"}</a></div>
+      <div className="heroValues"><div><b>01</b><span>{lang==="ur"?"تصدیق شدہ صحافت":"VERIFIED REPORTING"}</span></div><div><b>02</b><span>{lang==="ur"?"علاقائی شناخت":"REGIONAL IDENTITY"}</span></div><div><b>03</b><span>{lang==="ur"?"عوامی آواز":"PEOPLE FIRST"}</span></div></div>
+     </div>
+    </div>
+    <aside className="heroAside">
+     <div className="asideTop"><span>THE NEWSROOM</span><span className="pulse">● LIVE DESK</span></div>
+     <div className="asideHeadline">{lang==="ur"?"مقامی آواز، وسیع نظر":"Local insight. Wider perspective."}</div>
+     <p>{lang==="ur"?"بہاولپور، بہاولنگر اور رحیم یار خان — تین اضلاع، ایک مضبوط علاقائی آواز۔":"Three districts. One connected newsroom. Stories that matter to our communities."}</p>
+     <div className="asideRule"/>
+     <div className="asideStat"><b>03</b><span>{lang==="ur"?"ڈویژن کے اضلاع":"DIVISION DISTRICTS"}</span></div>
+     <div className="asideStat"><b>24/7</b><span>{lang==="ur"?"ڈیجیٹل نیوز روم":"DIGITAL NEWSROOM"}</span></div>
+     <div className="asideFootnote">{lang==="ur"?"تاریخی ورثہ • ذمہ دار صحافت":"HERITAGE • INTEGRITY • JOURNALISM"}</div>
+    </aside>
    </section>
    <section className="districtStory" style={{margin:"28px 0",padding:"24px",border:"1px solid var(--line,#ddd)",borderRadius:"12px"}}><h2 style={{fontSize:"1.5rem",marginBottom:12}}>{lang==="ur"?"بہاول ڈیجیٹل نیوز — تعارف":"About Bahawal Digital News"}</h2><p>{lang==="ur"?"بہاول ڈیجیٹل نیوز بہاولپور ڈویژن کی تاریخی، تہذیبی اور عوامی شناخت کو اجاگر کرنے والا ڈیجیٹل نیوز پلیٹ فارم ہے۔ ہمارا مقصد بہاولپور، بہاولنگر اور رحیم یار خان سمیت پورے ڈویژن کی مستند، بروقت اور ذمہ دارانہ خبریں عوام تک پہنچانا، مقامی مسائل کی آواز بننا اور نواب سر صادق محمد خان عباسی پنجم کے تاریخی ورثے کو خراجِ عقیدت کے ساتھ یاد رکھنا ہے۔":"Bahawal Digital News is a digital newsroom serving the wider Bahawalpur Division with verified, responsible reporting, community voices, and respect for the region’s history."}</p><p><a href="/about">{lang==="ur"?"ہمارا مکمل تعارف، مشن اور وژن پڑھیں ←":"Read our full mission and vision →"}</a></p></section>
    <section className="sectionHead" id="latest"><div><span className="sectionEyebrow">01 / NEWSROOM</span><h2>{t.latest}</h2></div><span className="sectionNote">{t.editorial}</span></section>
