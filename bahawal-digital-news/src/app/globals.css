@@ -72,3 +72,34 @@ html[dir="rtl"] .navInner{direction:rtl}html[dir="rtl"] .heroCopy{text-align:rig
 .heroPortraitBrand{display:none!important}
 @media(max-width:850px){.brandMark{width:70px;height:70px;flex-basis:70px}.heroVisualBrand{max-width:57%;left:22px}.heroVisualBrand strong{font-size:clamp(35px,7vw,56px)}}
 @media(max-width:560px){.brand{gap:10px;flex-direction:row-reverse}.brandMark{width:52px;height:52px;flex-basis:52px;border-radius:10px}.brandText{text-align:left}.brandText strong{font-size:20px;gap:4px;letter-spacing:.04em}.brandText strong em{font-size:.45em}.brandText small{font-size:10px;margin-top:2px}.heroVisual{min-height:205px;background-position:right 30%}.heroVisualBrand{left:14px;max-width:55%}.heroBrandEyebrow{font-size:7px;letter-spacing:.12em}.heroVisualBrand strong{font-size:33px;margin-top:6px}.heroVisualBrand strong em{font-size:9px}.heroBrandUrdu{font-size:12px;margin-top:7px}.heroBrandRule{width:45px;margin-top:10px}}
+
+/* Final portrait layout correction: complete portrait at masthead left; readable identity at right */
+.brand{flex-direction:row-reverse!important;align-items:center;gap:20px}
+.brandMark{width:112px;height:112px;flex:0 0 112px;border-radius:10px;background:#081326;overflow:hidden}
+.brandMark img{width:100%;height:100%;object-fit:contain!important;object-position:center!important;transform:none!important}
+.brandText{min-width:0;text-align:right!important;direction:ltr}
+.brandText strong{justify-content:flex-start;white-space:nowrap;font-size:clamp(29px,3.2vw,42px)}
+.brandText small{text-align:right!important;font-size:16px}
+.heroVisual{position:relative;min-height:390px;background:linear-gradient(115deg,#071326 0%,#101b38 54%,#081326 100%)}
+.heroPortraitImage{position:absolute;z-index:0;right:0;top:0;width:62%;height:100%;display:block;object-fit:contain;object-position:right center;filter:contrast(1.04) saturate(1.05)}
+.heroVisual:before{content:"";position:absolute;z-index:1;inset:0;background:linear-gradient(90deg,#071326 0%,rgba(7,19,38,.97) 28%,rgba(7,19,38,.64) 51%,rgba(7,19,38,.06) 100%);pointer-events:none}
+.heroVisual:after{z-index:1;background:radial-gradient(circle at 76% 42%,rgba(231,200,121,.16),transparent 46%);pointer-events:none}
+.heroVisualBrand{z-index:3;max-width:57%;left:clamp(22px,3vw,42px)}
+@media(max-width:850px){
+ .brandMark{width:92px;height:92px;flex-basis:92px}
+ .heroVisual{min-height:330px}
+ .heroPortraitImage{width:67%}
+ .heroVisualBrand{max-width:55%}
+}
+@media(max-width:560px){
+ .mastInner{min-height:92px}
+ .brand{gap:9px}
+ .brandMark{width:62px;height:72px;flex-basis:62px;border-radius:8px}
+ .brandText strong{font-size:19px;letter-spacing:.02em}
+ .brandText small{font-size:10px}
+ .heroVisual{min-height:225px}
+ .heroPortraitImage{width:70%;object-position:right center}
+ .heroVisual:before{background:linear-gradient(90deg,#071326 0%,rgba(7,19,38,.94) 34%,rgba(7,19,38,.42) 65%,rgba(7,19,38,.04) 100%)}
+ .heroVisualBrand{left:12px;max-width:56%}
+ .heroVisualBrand strong{font-size:clamp(25px,8vw,34px)}
+}
