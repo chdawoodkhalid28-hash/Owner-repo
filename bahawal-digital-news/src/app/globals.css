@@ -311,6 +311,6 @@ html[dir="rtl"] .heritageNoteCopy{text-align:right}
 @media(prefers-reduced-motion:reduce){.goldParticleField i{animation:none}}
 @media(max-width:560px){.heroPortraitImage{height:96%;width:82%}.goldParticleField{opacity:.48}}
 
-/* Hero portrait right-side alignment */
-.heroPortraitImage{width:140%!important;height:100%!important;left:auto!important;right:0!important;top:0!important;bottom:0!important;transform:none!important;object-fit:contain!important;object-position:right bottom!important}
-@media(max-width:560px){.heroPortraitImage{width:140%!important;height:100%!important;left:auto!important;right:0!important;object-position:right bottom!important}}
+/* Hero portrait flipped horizontally and kept on the right */
+.heroPortraitImage{width:140%!important;height:100%!important;left:auto!important;right:0!important;top:0!important;bottom:0!important;transform:scaleX(-1)!important;object-fit:contain!important;object-position:right bottom!important}
+@media(max-width:560px){.heroPortraitImage{width:140%!important;height:100%!important;left:auto!important;right:0!important;transform:scaleX(-1)!important;object-position:right bottom!important}}
