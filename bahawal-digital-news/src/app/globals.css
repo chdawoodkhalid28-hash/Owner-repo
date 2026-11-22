@@ -53,3 +53,22 @@ html[dir="rtl"] .navInner{direction:rtl}html[dir="rtl"] .heroCopy{text-align:rig
 .heroPortraitBrand strong{font:950 clamp(28px,3vw,44px)/1 "DM Sans",sans-serif;letter-spacing:.14em;text-shadow:0 0 18px rgba(69,220,245,.22)}
 .heroPortraitBrand span{margin-top:5px;color:#f1dca7;font:600 15px/1.9 "Noto Nastaliq Urdu",serif}
 @media(max-width:560px){.heroPortraitBrand{right:12px;bottom:12px;left:12px;padding:10px 12px}.heroPortraitBrand strong{font-size:30px}.heroPortraitBrand span{font-size:12px}}
+
+/* Editorial-grade portrait + identity composition */
+.brand{flex-direction:row-reverse;gap:19px}
+.brandText{text-align:left;direction:ltr}
+.brandText strong{display:flex;align-items:baseline;gap:8px;color:#f7f9ff;font-size:clamp(28px,3vw,38px);letter-spacing:.08em}
+.brandText strong em{font-style:normal;color:#e7c879;font-size:.42em;letter-spacing:.18em}
+.brandText small{text-align:left;font-size:14px;color:#f1dca7;line-height:2.1;margin-top:7px}
+.brandMark{width:88px;height:88px;flex-basis:88px;border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.34),0 0 25px rgba(231,200,121,.2);border-color:rgba(231,200,121,.85)}
+.brandMark img{object-position:center 24%;transform:none}
+.heroVisual{background-size:cover;background-position:right 32%;min-width:0}
+.heroVisualBrand{position:absolute;z-index:2;left:clamp(18px,3vw,38px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:flex-start;max-width:60%;text-align:left;direction:ltr}
+.heroBrandEyebrow{font:800 10px/1.5 "DM Sans",sans-serif;letter-spacing:.24em;color:#b9c9df;text-transform:uppercase}
+.heroVisualBrand strong{margin-top:11px;font:950 clamp(38px,5vw,68px)/.98 "DM Sans",sans-serif;letter-spacing:.09em;color:#f8fbff;text-shadow:0 5px 25px rgba(0,0,0,.35)}
+.heroVisualBrand strong em{font-style:normal;color:#e7c879;font-size:.36em;letter-spacing:.2em;vertical-align:middle}
+.heroBrandUrdu{margin-top:13px;font:600 clamp(16px,1.7vw,22px)/2.1 "Noto Nastaliq Urdu",serif;color:#f1dca7;direction:rtl;text-align:left}
+.heroBrandRule{margin-top:18px;width:76px;height:2px;background:linear-gradient(90deg,#e7c879,#45dcf5);box-shadow:0 0 16px #45dcf533}
+.heroPortraitBrand{display:none!important}
+@media(max-width:850px){.brandMark{width:70px;height:70px;flex-basis:70px}.heroVisualBrand{max-width:57%;left:22px}.heroVisualBrand strong{font-size:clamp(35px,7vw,56px)}}
+@media(max-width:560px){.brand{gap:10px;flex-direction:row-reverse}.brandMark{width:52px;height:52px;flex-basis:52px;border-radius:10px}.brandText{text-align:left}.brandText strong{font-size:20px;gap:4px;letter-spacing:.04em}.brandText strong em{font-size:.45em}.brandText small{font-size:10px;margin-top:2px}.heroVisual{min-height:205px;background-position:right 30%}.heroVisualBrand{left:14px;max-width:55%}.heroBrandEyebrow{font-size:7px;letter-spacing:.12em}.heroVisualBrand strong{font-size:33px;margin-top:6px}.heroVisualBrand strong em{font-size:9px}.heroBrandUrdu{font-size:12px;margin-top:7px}.heroBrandRule{width:45px;margin-top:10px}}
