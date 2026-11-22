@@ -299,3 +299,14 @@ html[dir="rtl"] .heritageNoteCopy{text-align:right}
  .heritageNoteCopy h2{font-size:20px}
  .sectionHead{margin-top:36px}
 }
+
+/* Nawab Sahib transparent portrait and subtle heritage gold particles */
+.heroVisual{isolation:isolate}
+.heroPortraitImage{position:absolute;z-index:2;left:50%;bottom:0;transform:translateX(-50%);height:94%;width:76%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 12px 28px #0009);mix-blend-mode:normal}
+.heroPortraitAura{position:absolute;z-index:1;width:72%;aspect-ratio:1;border-radius:50%;left:50%;top:43%;transform:translate(-50%,-50%);background:radial-gradient(circle,#d6ad5a38 0,#d6ad5a15 38%,transparent 72%);box-shadow:0 0 0 1px #d5b36b35,0 0 0 16px #d5b36b0d,0 0 70px #d5b36b22}
+.goldParticleField{position:absolute;z-index:3;inset:0;overflow:hidden;pointer-events:none;background-image:radial-gradient(circle,#f4d58b 1px,transparent 1.8px),radial-gradient(circle,#d5b36b 1.2px,transparent 2px),radial-gradient(circle,#fff0bf .8px,transparent 1.6px);background-size:73px 91px,117px 133px,43px 57px;background-position:7px 12px,31px 44px,19px 8px;opacity:.66;mask-image:linear-gradient(90deg,#000,transparent 88%)}
+.goldParticleField i{position:absolute;width:3px;height:3px;border-radius:50%;background:#f7d98e;box-shadow:0 0 9px 2px #d5b36b88;animation:goldDrift 5s ease-in-out infinite}
+.goldParticleField i:nth-child(1){left:9%;top:22%;animation-delay:-1s}.goldParticleField i:nth-child(2){left:19%;top:67%;animation-delay:-3s}.goldParticleField i:nth-child(3){left:31%;top:17%;animation-delay:-2s}.goldParticleField i:nth-child(4){left:42%;top:78%;animation-delay:-4s}.goldParticleField i:nth-child(5){left:57%;top:12%;animation-delay:-.5s}.goldParticleField i:nth-child(6){left:68%;top:63%;animation-delay:-2.5s}.goldParticleField i:nth-child(7){left:79%;top:28%;animation-delay:-1.5s}.goldParticleField i:nth-child(8){left:88%;top:76%;animation-delay:-3.5s}.goldParticleField i:nth-child(9){left:14%;top:88%;animation-delay:-2.2s}.goldParticleField i:nth-child(10){left:52%;top:45%;animation-delay:-.8s}.goldParticleField i:nth-child(11){left:74%;top:91%;animation-delay:-4.2s}.goldParticleField i:nth-child(12){left:94%;top:14%;animation-delay:-1.8s}
+@keyframes goldDrift{0%,100%{transform:translate3d(0,0,0) scale(.7);opacity:.45}50%{transform:translate3d(7px,-13px,0) scale(1.45);opacity:1}}
+@media(prefers-reduced-motion:reduce){.goldParticleField i{animation:none}}
+@media(max-width:560px){.heroPortraitImage{height:96%;width:82%}.goldParticleField{opacity:.48}}
