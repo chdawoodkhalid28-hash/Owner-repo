@@ -314,3 +314,7 @@ html[dir="rtl"] .heritageNoteCopy{text-align:right}
 /* Hero portrait flipped horizontally and kept on the right */
 .heroPortraitImage{width:140%!important;height:100%!important;left:auto!important;right:0!important;top:0!important;bottom:0!important;transform:scaleX(-1)!important;object-fit:contain!important;object-position:right bottom!important}
 @media(max-width:560px){.heroPortraitImage{width:140%!important;height:100%!important;left:auto!important;right:0!important;transform:scaleX(-1)!important;object-position:right bottom!important}}
+
+/* Hero reversed: copy left, mirrored portrait on right-facing layout */
+@media(min-width:561px){.heroMain{grid-template-columns:.95fr 1fr}.heroVisual{order:2}.heroCopy{order:1}.heroPortraitImage{left:0!important;right:auto!important;object-position:left bottom!important;transform:scaleX(-1)!important}.heroVisual:before{background:linear-gradient(270deg,#071326 0%,rgba(7,19,38,.97) 28%,rgba(7,19,38,.64) 51%,rgba(7,19,38,.06) 100%)}.heroVisual:after{background:radial-gradient(circle at 24% 42%,rgba(231,200,121,.16),transparent 46%)}}
+@media(max-width:560px){.heroMain{grid-template-columns:1fr}.heroVisual{order:1}.heroCopy{order:2}.heroPortraitImage{left:0!important;right:auto!important;object-position:left bottom!important;transform:scaleX(-1)!important}.heroVisual:before{background:linear-gradient(270deg,#071326 0%,rgba(7,19,38,.94) 34%,rgba(7,19,38,.42) 65%,rgba(7,19,38,.04) 100%)}}
