@@ -318,3 +318,15 @@ html[dir="rtl"] .heritageNoteCopy{text-align:right}
 /* Hero reversed: copy left, mirrored portrait on right-facing layout */
 @media(min-width:561px){.heroMain{grid-template-columns:.95fr 1fr}.heroVisual{order:2}.heroCopy{order:1}.heroPortraitImage{left:0!important;right:auto!important;object-position:left bottom!important;transform:scaleX(-1)!important}.heroVisual:before{background:linear-gradient(270deg,#071326 0%,rgba(7,19,38,.97) 28%,rgba(7,19,38,.64) 51%,rgba(7,19,38,.06) 100%)}.heroVisual:after{background:radial-gradient(circle at 24% 42%,rgba(231,200,121,.16),transparent 46%)}}
 @media(max-width:560px){.heroMain{grid-template-columns:1fr}.heroVisual{order:1}.heroCopy{order:2}.heroPortraitImage{left:0!important;right:auto!important;object-position:left bottom!important;transform:scaleX(-1)!important}.heroVisual:before{background:linear-gradient(270deg,#071326 0%,rgba(7,19,38,.94) 34%,rgba(7,19,38,.42) 65%,rgba(7,19,38,.04) 100%)}}
+
+/* Premium top-bar landmark strip + corrected hero portrait composition */
+.utilityInner{display:grid;grid-template-columns:1fr auto 1fr;gap:18px}
+.utilityLandmarks{display:flex;align-items:center;justify-content:center;gap:18px;color:#f0dfb8;font-family:"Noto Nastaliq Urdu",serif;font-size:12px;white-space:nowrap}
+.utilityLandmarks a{transition:color .2s;text-decoration:none}.utilityLandmarks a:hover{color:#fff}
+.utilityLandmarks i{width:3px;height:3px;background:var(--bdn-gold);border-radius:50%;box-shadow:0 0 8px #d9b96f66}
+.utilityRight{justify-content:flex-end}
+/* No portrait in the masthead logo: keep it a crisp BDN monogram */
+.brandMark img{display:none!important}
+@media(min-width:561px){.heroMain{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}.heroVisual{order:2!important}.heroCopy{order:1!important}.heroPortraitImage{width:90%!important;height:100%!important;left:auto!important;right:0!important;transform:scaleX(-1)!important;object-position:right bottom!important}.heroVisualBrand{left:24px!important;max-width:48%!important}.heroVisual:before{background:linear-gradient(270deg,#071426 0%,rgba(7,20,38,.82) 24%,rgba(7,20,38,.34) 48%,transparent 72%)!important}}
+@media(max-width:850px){.utilityInner{grid-template-columns:1fr auto;row-gap:7px}.utilityLandmarks{grid-column:1/-1;grid-row:2;order:3;justify-content:flex-start;gap:13px;padding:3px 0 6px}.utilityRight{grid-column:2;grid-row:1}.heroPortraitImage{width:85%!important}}
+@media(max-width:560px){.utilityInner{grid-template-columns:1fr auto;gap:5px}.utilityLandmarks{font-size:10px;gap:9px;grid-column:1/-1;grid-row:2;justify-content:center}.utilityRight{grid-column:2;grid-row:1}.utilityRight{font-size:0}.utilityRight .lang{font-size:10px}.heroMain{grid-template-columns:1fr!important}.heroVisual{order:1!important}.heroCopy{order:2!important}.heroPortraitImage{width:95%!important;left:auto!important;right:0!important;transform:scaleX(-1)!important;object-position:right bottom!important}.heroVisualBrand{left:12px!important;max-width:44%!important}}
