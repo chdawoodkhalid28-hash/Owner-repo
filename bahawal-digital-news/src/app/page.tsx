@@ -14,7 +14,7 @@ export default function Home(){
  const title=(a:Article)=>lang==="ur"?(a.title_ur||a.title_en):(a.title_en||a.title_ur);
  const excerpt=(a:Article)=>lang==="ur"?(a.excerpt_ur||a.excerpt_en):(a.excerpt_en||a.excerpt_ur);
  return <main>
-  <div className="utility"><div className="wrap utilityInner"><span>{new Intl.DateTimeFormat(lang==="ur"?"ur-PK":"en-PK",{weekday:"long",year:"numeric",month:"long",day:"numeric"}).format(new Date())}</span><span className="utilityRight">{t.editorial}<i/> <button onClick={()=>setLang(lang==="ur"?"en":"ur")} className="lang">{lang==="ur"?"ENGLISH":"اردو"}</button></span></div></div>
+  <div className="utility"><div className="wrap utilityInner"><span>{new Intl.DateTimeFormat(lang==="ur"?"ur-PK":"en-PK",{weekday:"long",year:"numeric",month:"long",day:"numeric"}).format(new Date())}</span><span className="utilityLandmarks"><a href="#heritage">نور محل</a><i/><a href="#heritage">چولستان</a><i/><a href="#heritage">روہی</a><i/><a href="#heritage">قلعہ</a></span><span className="utilityRight">{t.editorial}<i/> <button onClick={()=>setLang(lang==="ur"?"en":"ur")} className="lang">{lang==="ur"?"ENGLISH":"اردو"}</button></span></div></div>
   <header className="masthead"><div className="wrap mastInner"><a href="/" className="brand"><span className="brandText"><strong>BDN <em>NEWS</em></strong><small>بہاول ڈیجیٹل نیوز</small></span><span className="brandMark" aria-label="BDN logo"><strong>BDN</strong><i/></span></a><div className="mastTag">{t.edition}<span>BAHAWALPUR DIVISION · PAKISTAN</span></div><div className="mastActions"><a href="#newsletter" className="outlineBtn">NEWSLETTER <span>↗</span></a></div></div></header>
   <nav className="nav"><div className="wrap navInner"><div className="navLinks">{cats.map(c=><a key={c[0]} href={c[0]==="top"?"#top":c[0]==="local"?"#districts":`/category/${c[0]}`}>{lang==="ur"?c[1]:c[2]}</a>)}</div><label className="search"><span>⌕</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder={t.search}/></label></div></nav>
   <div className="wrap">
@@ -54,7 +54,7 @@ export default function Home(){
      <div className="asideFootnote">{lang==="ur"?"تاریخی ورثہ • ذمہ دار صحافت":"HERITAGE • INTEGRITY • JOURNALISM"}</div>
     </aside>
    </section>
-   <section className="heritageNote">
+   <section className="heritageNote" id="heritage">
     <div className="heritageNoteMark"><span>BDN</span><i>THE REGION'S VOICE</i></div>
     <div className="heritageNoteCopy"><span className="sectionEyebrow">OUR ROOTS · OUR RESPONSIBILITY</span><h2>{lang==="ur"?"ورثہ ہمارا، آواز سب کی":"A heritage to honour. A community to serve."}</h2><p>{lang==="ur"?"بہاول ڈیجیٹل نیوز بہاولپور ڈویژن کی تاریخی، تہذیبی اور عوامی شناخت کو اجاگر کرنے والا ڈیجیٹل نیوز پلیٹ فارم ہے۔ ہمارا مقصد بہاولپور، بہاولنگر اور رحیم یار خان سمیت پورے ڈویژن کی مستند، بروقت اور ذمہ دارانہ خبریں عوام تک پہنچانا، مقامی مسائل کی آواز بننا اور نواب سر صادق محمد خان عباسی پنجم کے تاریخی ورثے کو خراجِ عقیدت کے ساتھ یاد رکھنا ہے۔":"Bahawal Digital News is a digital newsroom shaped by the history, culture and people of Bahawalpur Division. We bring verified, timely and responsible reporting to the region, amplify local voices and honour the legacy of Nawab Sir Sadiq Muhammad Khan Abbasi V."}</p><a href="/about">{lang==="ur"?"ہمارا مکمل تعارف، مشن اور وژن ←":"DISCOVER OUR MISSION & VISION ↗"}</a></div>
    </section>
