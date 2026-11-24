@@ -334,3 +334,60 @@ html[dir="rtl"] .heritageNoteCopy{text-align:right}
 /* Hero portrait on LEFT, hero text on RIGHT; portrait remains mirrored from prior direction request */
 @media(min-width:561px){.heroMain{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}.heroVisual{order:1!important}.heroCopy{order:2!important}.heroPortraitImage{width:90%!important;height:100%!important;left:0!important;right:auto!important;transform:scaleX(-1)!important;object-position:left bottom!important}.heroVisualBrand{left:auto!important;right:24px!important;max-width:48%!important;text-align:right!important}.heroVisual:before{background:linear-gradient(90deg,#071426 0%,rgba(7,20,38,.82) 24%,rgba(7,20,38,.34) 48%,transparent 72%)!important}.heroVisual:after{background:radial-gradient(circle at 24% 42%,rgba(231,200,121,.16),transparent 46%)!important}}
 @media(max-width:560px){.heroMain{grid-template-columns:1fr!important}.heroVisual{order:1!important}.heroCopy{order:2!important}.heroPortraitImage{width:95%!important;left:0!important;right:auto!important;transform:scaleX(-1)!important;object-position:left bottom!important}.heroVisualBrand{left:auto!important;right:12px!important;max-width:44%!important;text-align:right!important}.heroVisual:before{background:linear-gradient(90deg,#071326 0%,rgba(7,19,38,.94) 34%,rgba(7,19,38,.42) 65%,rgba(7,19,38,.04) 100%)!important}}
+
+
+/* BDN 2026 complete front-page refresh: editorial masthead + persistent heritage dock */
+.masthead{position:relative!important;top:auto!important;background:linear-gradient(112deg,#061426 0%,#102b43 58%,#172b40 100%);border-bottom:1px solid rgba(217,185,111,.42)}
+.mastInner{min-height:104px}
+.brandMark{border-radius:16px!important;background:linear-gradient(145deg,#142e45,#071426)!important;border:1px solid #d9b96f!important;box-shadow:0 8px 26px #0005, inset 0 0 18px #d9b96f18!important}
+.brandText strong{letter-spacing:.12em}
+.mastTag{font-family:"Noto Nastaliq Urdu",serif;font-size:15px;line-height:2}
+.mastTag span{font-family:"DM Sans",sans-serif}
+.heritageDock{position:sticky;top:0;z-index:45;display:grid;grid-template-columns:180px repeat(3,minmax(0,1fr));gap:9px;align-items:stretch;padding:9px max(4%,calc((100% - 1240px)/2));background:rgba(4,13,24,.96);border-top:1px solid rgba(217,185,111,.35);border-bottom:1px solid rgba(217,185,111,.55);box-shadow:0 10px 30px rgba(2,9,18,.28);backdrop-filter:blur(14px)}
+.heritageDockIntro{display:flex;flex-direction:column;justify-content:center;gap:7px;padding:0 14px;border-right:1px solid rgba(217,185,111,.3);color:#e7d5a8}
+.heritageDockIntro span{font:800 8px "DM Sans",sans-serif;letter-spacing:.18em;color:#c4a86c}
+.heritageDockIntro strong{font:600 16px/1.8 "Noto Nastaliq Urdu",serif}
+.heritageTile{position:relative;display:block;height:78px;overflow:hidden;border:1px solid rgba(217,185,111,.28);background:#14263a;isolation:isolate}
+.heritageTile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .45s ease,filter .35s ease;filter:saturate(.82) contrast(1.06)}
+.heritageTile:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,11,21,.78),rgba(3,11,21,.12) 85%);z-index:0}
+.heritageTile span{position:absolute;z-index:1;left:15px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:3px;color:#fff;text-shadow:0 2px 8px #000}
+.heritageTile b{font:600 16px/1.6 "Noto Nastaliq Urdu",serif}
+.heritageTile small{font:800 8px "DM Sans",sans-serif;letter-spacing:.16em;color:#e7cf92}
+.heritageTile:hover img{transform:scale(1.07);filter:saturate(1.05) contrast(1.08)}
+.nav{position:relative;z-index:4}
+.ticker{margin-top:16px}
+.hero{gap:15px}
+.heroMain{border:1px solid rgba(190,155,85,.42);box-shadow:0 22px 52px rgba(7,20,38,.2)}
+.heroVisual{background:radial-gradient(ellipse at 45% 45%,#3e493f 0%,#1c2b35 34%,#071426 78%)}
+.heroCopy{background:linear-gradient(145deg,#08192c,#10283d 68%,#1a3040)}
+.heroCopy h1{letter-spacing:-.02em}
+.heroAside{background:linear-gradient(155deg,#fbf8ef,#e9e0cf);border-top-width:4px}
+.heritageNote{margin-top:42px}
+.sectionHead{position:relative}
+.sectionHead:after{content:"";position:absolute;bottom:-1px;left:0;width:110px;height:3px;background:linear-gradient(90deg,#a98543,#e5d09a)}
+.newsGrid{align-items:stretch}
+.leadCard{border-radius:3px;overflow:hidden}
+.leadImage{min-height:260px}
+.miniStory{padding:19px 0}
+.districtCard{min-height:125px}
+.newsletter{border-radius:3px}
+footer{margin-top:54px}
+@media(max-width:850px){
+ .heritageDock{grid-template-columns:repeat(3,minmax(0,1fr));padding:8px 4%;gap:7px}
+ .heritageDockIntro{display:none}
+ .heritageTile{height:68px}
+ .heritageTile span{left:10px}
+ .heritageTile b{font-size:14px}
+}
+@media(max-width:560px){
+ .mastInner{min-height:82px}
+ .mastTag{display:none}
+ .heritageDock{top:0;grid-template-columns:repeat(3,minmax(0,1fr));padding:6px 3%;gap:5px}
+ .heritageTile{height:58px}
+ .heritageTile span{left:7px;gap:0}
+ .heritageTile b{font-size:12px}
+ .heritageTile small{font-size:6px;letter-spacing:.1em}
+ .heritageTile:after{background:linear-gradient(90deg,rgba(3,11,21,.78),rgba(3,11,21,.22))}
+ .utility{font-size:9px}
+ .ticker{margin:12px 0}
+}
