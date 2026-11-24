@@ -29,7 +29,7 @@ export default function Home(){
     <div className="heroMain">
      <div className="heroVisual" role="img" aria-label="Nawab Sahib portrait — the heritage and identity of Bahawal Digital News">
       <div className="heroPortraitAura"/>
-      <img className="heroPortraitImage" src="/images/nawab-sahib-transparent.png" alt="Portrait of Nawab Sahib"/><div className="goldParticleField" aria-hidden="true"><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/></div>
+      <img className="heroPortraitImage" src="/images/nawab-sahib-upscaled-2x.png" alt="Portrait of Nawab Sahib"/><div className="goldParticleField" aria-hidden="true"><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/></div>
       <div className="heroPortraitFrame"/>
       <div className="heroVisualBrand">
        <span className="heroBrandEyebrow">THE LEGACY · THE REGION · THE PEOPLE</span>
